@@ -1,0 +1,424 @@
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffd8d8; 
+    
+}
+.mb-3 {
+    transition: transform 0.3s ease-in-out; 
+    /* Add a smooth transition effect on the transform property */
+}
+.mb-3:hover {
+    transform: scale(1.1); 
+}
+
+.navbar {
+    background-image: url(https://static.vecteezy.com/system/resources/previews/000/092/250/original/free-maroon-wooden-background-vector.jpg);
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.403); /* Add a subtle shadow */
+    z-index: 1;
+    
+    
+}
+
+.company-logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 60px;
+    transition: 0.3s;
+    transform:0.3s;
+}
+
+.company-name {
+    font-weight: bold;
+}
+
+.navbar a {
+    color: #fee7e7;
+    margin-right: 10px;
+    text-decoration: none;
+    transition:0.3s ;
+    background-color: 0.3s;
+    display: inline-block;
+   
+    text-decoration: none;
+    /* Set your default text color */
+    transition: transform 0.3s ease;
+}
+.navbar a:hover {
+    background-color: #f8bdbd00;
+    border-radius: 50px; 
+    color: #fdadad;
+
+       
+        border-radius: 50px; 
+       
+        transform: scale(1.1); /* Apply a scale transform on hover */
+   
+
+   
+}
+.left{
+    padding-left: 10px;
+}
+
+.dropdown {
+    display: inline-block;
+    color: #eee;
+    
+}
+.dropdown-toggle {
+    background-color: maroon;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.dropbtn {
+    background-color: maroon;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.dropdown-toggle:hover {
+    background-color: #ffd4d4; /* Change the background color on hover */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: maroon;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f9f9f9;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    overflow: hidden;
+    transform: 0.3s;
+    background-color:0.3s;
+}
+
+.dropdown-menu button {
+    color: maroon;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transform :0.3s;
+    background-color :0.3s; /* Add transition for smooth hover effect */
+}
+
+.dropdown-menu button:hover {
+    background-color: #f9f9f9;
+    transform: scale(1.1);
+}
+/* banner
+#carouselExampleCaptions {
+    /* Adjust the height according to your needs 
+  }
+*/
+.d-block{
+    
+    height:550px
+    
+}
+/* category*/
+.Categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+  }
+  
+  .category-list {
+    flex-basis: calc(50% - 20px); /* Adjust the width as needed */
+    margin-top: 10px;
+    margin-bottom: 20px; /* Add margin between category lists */
+    padding-left: 60px;
+    
+  }
+  .header {
+    text-align: center;
+    margin-top: 20px; /* Add margin above the header */
+  }
+  
+  .Categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .category-list {
+    flex-basis: calc(50% - 20px); /* Adjust the width as needed */
+    margin-bottom: 20px; /* Add margin between category lists */
+  }
+  
+
+.footer {
+    background-color: maroon;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    padding: 10px;
+    max-width: 300px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #fff;
+}
+
+/*products*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+*
+{
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffc8a4;
+}
+a
+{
+    text-decoration: none;
+}
+.product {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+}
+.product-card {
+    width: 280px;
+    position: relative;
+    box-shadow: 0 2px 7px #dfdfdf;
+    margin: 20px;
+    background: #fdebe1e8;
+}
+
+.badge {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    background: red;
+    color: #fff;
+    padding: 3px 10px;
+}
+
+.product-tumb {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    padding: 20px;
+    background: #f0f0f0;
+}
+
+.product-tumb img {
+    max-width: 110%;
+    height: 110%;
+    
+    object-fit: cover;
+}
+
+.product-details {
+    padding: 20px;
+}
+
+
+.product-catagory {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ccc;
+    margin-bottom: 18px;
+}
+
+.product-details h4 a {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    color: #363636;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.product-details h4 a:hover {
+    color: #fbb72c;
+}
+
+.product-details p {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 18px;
+    color: #999;
+}
+
+.product-bottom-details {
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.product-bottom-details div {
+    float: left;
+    width: 50%;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #910000;
+    font-weight: 600;
+}
+
+.product-price small {
+    font-size: 70%;
+    font-weight: 400;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.product-links {
+    text-align: right;
+    top: 10px;
+  right: 10px;
+}
+
+.product-links a {
+    display: inline-block;
+    margin-left: 10px;
+    color: #ffa07a;
+    transition:color 0.3s;
+    font-size: 25px;
+}
+
+.product-links a:hover {
+    color: #fbb72c;
+}
+.product-links a.wishlist-btn {
+    font-size: 20px; /* Adjust the font size for the icons */
+    color: #e1e1e1;
+    transition: 0.3s;
+}
+
+.product-links a.wishlist-btn:hover,
+.product-links a.wishlist-btn.active {
+    color: #f00; /* Red color */
+}
+.dropdown-item{
+    color: #910000;
+}
+.wizard .list-group .list-group .list-group-item{
+    border-radius: 50px;
+}
+
+.list-group a{
+ 
+   border-radius: 25px;
+   background-color: rgba(250, 118, 118, 0.141);
+}
+
+
+ /* Add styles for the search bar */
+.navbar {
+    /* Your existing styles */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background-color: maroon;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #910000; /* Change the color on hover */
+}
+

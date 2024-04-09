@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button onclick="openPopup()">Add Category</button>
+
+<div id="categoryPopup" class="overlay">
+    <div class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2>Add Category</h2>
+        <label for="categoryName">Category Name:</label>
+        <input type="text" id="categoryName" placeholder="Enter category name">
+        <br><br>
+        <button onclick="addCategory()">Add</button>
+    </div>
+</div>
+
+<script>
+    function openPopup() {
+        document.getElementById('categoryPopup').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('categoryPopup').style.display = 'none';
+    }
+
+    function addCategory() {
+        var categoryName = document.getElementById('categoryName').value;
+        // You can perform further actions with the category name, such as adding it to a list or sending it to a server.
+        console.log('Added category:', categoryName);
+        closePopup();
+    }
+</script>
+
+</body>
+</html>

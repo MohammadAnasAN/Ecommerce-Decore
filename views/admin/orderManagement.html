@@ -1,0 +1,146 @@
+<%-include('header')%>
+
+<style>
+    #site-main{
+        margin: 0 75px; /* 0 for top and bottom, 10em for left and right */
+        font-family: 'Barlow',sans-serif;
+}
+
+table{
+border-spacing: 0px;
+width: 100%;
+border: 0.5px solid #ddd;
+}
+
+
+.table td,.table th{
+    border: 0.5px solid #8a8a8a;
+margin: .5em;
+/* vertical-align: top; */
+text-align: center;
+
+}
+
+.table tr:hover{
+background-color: #dddddd;
+}
+
+.table .thead-dark th{
+color:#fff;
+background-color: rgb(23, 8, 8);
+border-color: #8a8a8a;
+}
+
+.form-inline {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+.form-user {
+   height: 30px;
+   border-radius: 20px;
+   border: none;
+   background: rgb(235, 235, 235);
+   padding: 0 10px;
+ }
+ 
+
+ </style>
+
+
+<main id="site-main">
+    <div class="container">
+        
+           
+             
+
+        <!-- form handling -->
+        <form action="" method="">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User Name</th>
+                        <th>Shipping Address</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Payment</th>
+                        <th>Order Status</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% orders.forEach(order => { %>
+                        <% order.items.forEach(item=> { %>
+                            <tr>
+                                <td><%= order._id %></td>
+                                <td><%= `${order.user.firstName} ${order.user.lastName} `%></td>
+                                <td>
+                                    <%= order.shippingAddress.houseName %>,
+                                    <%= order.shippingAddress.street %>,
+                                    <%= order.shippingAddress.city %>,
+                                    <%= order.shippingAddress.state %>,
+                                    <%= order.shippingAddress.country %>,
+                                    <%= order.shippingAddress.zipCode %>
+                                </td>
+                                <td> <img src ='<%= item.product.productImages[0] %> ' style="width: 50px; height:50px; margin: 10px 0;"><br><%= item.product.name %></td>
+                                <td><%= item.quantity %></td>
+                                <td>₹<%= item.unitPrice * item.quantity %></td>
+                                <td><%= order.paymentMethod %></td>
+                                <td>
+                                    <select name="itemStatus" id="itemStatus" 
+                                        data-item-id="<%= item._id %>"
+                                        data-order-id="<%= order._id %>"
+                                        <%= item.status === 'cancelled' ? 'disabled' : '' %>
+                                        style="<%= item.status === 'cancelled' ? 'font-weight: bold; color: black;' : '' %>"
+                                        onchange="updateItemStatus(this)">
+                                        <option value="pending" <%= item.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                                        <option value="shipped" <%= item.status === 'shipped' ? 'selected' : '' %>>Shipped</option>
+                                        <option value="delivered" <%= item.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                                        <option value="cancelled" <%= item.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                    </select>
+                                </td>
+                                
+                                
+                                <td><%= order.createdAt.toISOString().slice(0, 19).replace("T", " ") %></td>
+                            </tr>
+                        <% }); %>
+                    <% }); %>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</main>
+
+<script>
+    function updateItemStatus(selectElement) {
+        const itemId = selectElement.getAttribute('data-item-id');
+        const orderId = selectElement.getAttribute('data-order-id');
+        const newStatus = selectElement.value;
+        console.log(itemId);
+        console.log(orderId);
+        console.log(newStatus);
+
+        // Assuming you have an API endpoint for updating the item status
+        fetch(`/admin/updatestatus/${orderId}/${itemId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newStatus }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Item status updated successfully:', data);
+            // You can add additional logic here if needed
+        })
+        .catch(error => {
+            console.error('Error updating item status:', error);
+            // Handle errors here
+        });
+    }
+</script>
+
+

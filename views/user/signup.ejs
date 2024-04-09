@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/assets/user/style.css"/>
+</head>
+<body>
+    <div class="form-container">
+        <h2>SignUp</h2>
+        <% if (typeof errorMessage !== 'undefined') { %>
+            <p style="color: red;"><%= errorMessage %></p>
+        <% } %>
+        <form action="/signup" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="password" required>
+
+        </div> 
+        <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="password" placeholder=" confirmPassword" required>
+
+        </div>
+        <div class="form-group">
+            <label>
+              <span class="sr-only">Referral Code (if any)</span>
+              <input type="text" placeholder="Referral Code (if any)" name="referralCode" id="referralInput" class="form-input">
+              <div id="referralError" class="error-message"></div>
+          </label>
+          
+          <button type="button" onclick="checkReferralCode()" style="background-color: transparent; color: white;">Check Referral Code</button>
+        </div>
+
+        <button type="Submit" class="submit-btn">SignUp</button>   
+        </form>
+        
+    </div>
+<script>
+
+    function checkReferralCode() {
+        var referralCode = document.getElementById('referralInput').value;
+
+        // Perform client-side validation
+        if (referralCode.trim() === '') {
+            document.getElementById('referralError').innerText = 'Referral code is required.';
+            return;
+        }
+
+        // Call the server-side logic to check the referral code
+        // Replace the URL with the actual endpoint on your server
+        fetch('/checkReferralCode', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                referralCode: referralCode,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isValid) {
+                document.getElementById('referralError').innerText = 'Referral code is valid.';
+                document.getElementById('referralError').style.color = 'green';
+            } else {
+                document.getElementById('referralError').innerText = 'Invalid referral code.';
+
+
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+    
+</body>
+</html>

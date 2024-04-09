@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verifyemail</title>
+    <link rel="stylesheet" href="/assets/user/otp.css" />
+</head>
+<body>
+
+    
+
+<div class="ot">
+    <div class="otp-container">
+        <h2>Verifying OTP</h2>
+        <div class="otp-boxes" id="otpBoxes">
+            <!-- OTP boxes will be dynamically generated here -->
+        </div>
+       
+        <button onclick="verifyOTP()">Verify</button>
+        
+       
+        <button onclick="resendOTP()" id="resendBtn" disabled>Resend</button>
+       
+        <p id="timer"></p>
+        <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+</div>
+
+    <script >let otpBoxes = document.getElementById('otpBoxes');
+        let resendBtn = document.getElementById('resendBtn');
+        let timerElement = document.getElementById('timer');
+        let timer;
+        let timeLeft = 120;
+        
+        // Function to generate OTP input boxes
+        function generateOTPBoxes() {
+            otpBoxes.innerHTML = '';
+            for (let i = 1; i <= 6; i++) {
+                let box = document.createElement('input');
+                box.type = 'text';
+                box.maxLength = 1;
+                box.className = 'otp-box';
+                box.id = 'box' + i;
+                box.addEventListener('input', handleInput);
+                otpBoxes.appendChild(box);
+            }
+        }
+        
+        // Function to handle OTP input
+        // Function to handle OTP input
+function handleInput(e) {
+    let currentBox = e.target;
+    let prevBox = currentBox.previousElementSibling;
+    let nextBox = currentBox.nextElementSibling;
+
+    // Handle backspace
+    if (e.inputType === 'deleteContentBackward' && prevBox) {
+        prevBox.value = ''; // Clear the previous box if backspace is pressed
+        prevBox.focus();
+    } else if (nextBox) {
+        nextBox.focus(); // Move to the next box
+    }
+
+    // verifyOTP(); // Verify OTP after input
+}
+
+        
+        // Function to verify OTP
+function verifyOTP() {
+        const otpValues = [];
+        for (let i = 1; i <= 6; i++) {
+        const boxValue = document.getElementById('box' + i).value;
+             otpValues.push(boxValue);
+        }
+
+        const enteredOTP = otpValues.join('');
+        console.log('Entered OTP:', enteredOTP); 
+
+        // Make a fetch request to the server for OTP verification
+        fetch('/getOtp', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+        body: JSON.stringify({ otp: enteredOTP }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Verification Response:', data);
+            if (data.error) {
+                showError(data.error);
+                clearEnteredOTP();
+            } else {
+                showSuccessMessage('OTP Verified! Redirecting to login page...');
+                setTimeout(() => {
+                    window.location.href = '/login'; 
+                }, 2000); 
+
+
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showError('Failed to verify OTP. Please try again.');
+        // Clear the entered OTP and focus on the first box
+        clearEnteredOTP();
+        });
+        }
+
+        function clearEnteredOTP() {
+    for (let i = 1; i <= 6; i++) {
+        document.getElementById('box' + i).value = '';
+    }
+    document.getElementById('box1').focus();
+}
+        
+        // Function to resend OTP
+function resendOTP() {
+            
+           // Make a fetch request to the server for OTP resend
+        fetch('/resendotp', {
+            method: 'POST',
+            headers: {
+                 'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Resend Response:', data);
+            if (data.error) {
+                showError(data.error);
+            } else {
+                showSuccessMessage('OTP Resent!');
+                // Reset the timer if needed
+                clearInterval(timer);
+                timeLeft = 120;
+                startTimer();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showError('Failed to resend OTP. Please try again.');
+        });
+
+}
+        
+        // Function to start the timer
+function startTimer() {
+        const savedState = getTimerState();
+
+        if (savedState) {
+        timeLeft = savedState.timeLeft;
+        }
+
+        resendBtn.disabled = true;
+        timer = setInterval(function () {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                resendBtn.disabled = false;
+                timerElement.innerText = '';
+                localStorage.removeItem('timerState'); // Clear timer state after completion
+            } else {
+                timerElement.innerText = `Resend in ${timeLeft} seconds`;
+                timeLeft--;
+
+                // Save timer state in localStorage
+                saveTimerState(timeLeft);
+            }
+        }, 1000);
+}
+
+        
+        // Initial setup
+generateOTPBoxes();
+startTimer();
+         
+
+        function showSuccessMessage(message) {
+        const successMessageElement = document.getElementById('successMessage');
+         const errorMessageElement = document.getElementById('errorMessage');
+        successMessageElement.innerText = message;
+        errorMessageElement.innerText = ''; // Clear error message
+        successMessageElement.style.display = 'block'; // Show success message
+         errorMessageElement.style.display = 'none'; // Hide error message
+}
+
+// Function to show error message
+function showError(message) {
+    const successMessageElement = document.getElementById('successMessage');
+    const errorMessageElement = document.getElementById('errorMessage');
+    errorMessageElement.innerText = message;
+    successMessageElement.innerText = ''; // Clear success message
+    errorMessageElement.style.display = 'block'; // Show error message
+    successMessageElement.style.display = 'none'; // Hide success message
+}
+
+// Function to save timer state
+function saveTimerState(timeLeft) {
+    localStorage.setItem('timerState', JSON.stringify({ timeLeft }));
+}
+
+// Function to retrieve timer state
+function getTimerState() {
+    const storedState = localStorage.getItem('timerState');
+    return storedState ? JSON.parse(storedState) : null;
+}
+
+// Call this in your page load
+window.onload = function () {
+    const savedState = getTimerState();
+
+    if (savedState) {
+        timeLeft = savedState.timeLeft;
+        startTimer();
+    }
+};
+
+        </script>
+      
+    
+</body>
+</html>
+
+

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>edit Product</title>
+  <link rel="stylesheet" href="/assets/admin/editproduct.css">
+  <link
+  href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+  rel="stylesheet"
+/> 
+<style>
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.image-item {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.prtimage {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc; /* Add a border for better visibility */
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: red;
+}
+
+/* Style for Modified Content */
+.image-container {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.delete-button {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: red;
+    background-color: #fff; /* Set background color for better visibility */
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    padding: 5px;
+}
+</style> 
+
+  
+</head>
+<body>
+
+    
+  <nav class="sidebar">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="/img/admin.png" alt="logo" />
+        </span>
+        <div class="text header-text">
+          <span class="main">ADMIN</span>
+          <br>
+          <span class="sub">is now active</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="/dash">
+              <i class="bx bx-home-alt icons"></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/userAdmin">
+              <i class='bx bxs-user-detail icons'></i>
+              
+              <span class="text nav-text">User Management</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/productManag">
+              <i class='bx bx-cart-add icons'></i>
+              <span class="text nav-text">Product Management</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/orderManage">
+              <i class='bx bx-money-withdraw icons'></i>
+              <span class="text nav-text">Order & Payments</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/salesReport">
+              <i class='bx bxs-report icons'></i>
+              <span class="text nav-text">Sales Report</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/coupon">
+              <i class='bx bxs-coupon icons'></i>
+              <span class="text nav-text">coupon</span>
+            </a>
+          </li>
+          <!-- <li class="nav-link">
+            <a href="#">
+              <i class='bx bxs-sticker icons'></i>
+              <span class="text nav-text">Banner</span>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="nav-link">
+          <a href="#">
+            <i class="bx bx-log-out icons"></i>
+            <span class="text nav-text">Log Out</span>
+          </a>
+        </li>
+        
+        </li>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content" style="margin-left: 250px;" >
+    
+    <nav class="navbar"style="position: fixed;width:83.7%;box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);">
+
+        <div class="navbar-left">
+            <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+            <div class="admin-details">
+                <p class="admin-name">Mohammad Anas AN</p>
+                <p class="admin-role">Administrator</p>
+            </div>
+        </div>
+        <div class="navbar-right">
+         
+            
+            <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+        </div>
+        <div class="navCenter">
+          <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+          <h3>DECORE COMPANY</h3>
+        </div>
+    </nav>
+
+   
+<div class="editproduct" style="margin-top: 120px;">
+  <h2>Edit Product</h2>
+
+  <form action="/editproduct/<%=items._id%>" method="post" enctype="multipart/form-data" id="editForm">
+    <div class="form-group">
+      <div>
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" value="<%=items.productName%>" required>
+      </div>
+
+      <div>
+        <label for="productDescription">Product Description:</label>
+        <textarea id="productDescription" name="description" value="<%=items.description%>" required><%=items.description%></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <label for="productCategory">Product Category:</label>
+        <select id="productCategory" name="selectCategory" required>
+          <% categories.forEach(category => { %>
+              <option value="<%= category.categoryName %>" <%= items.selectCategory === category.categoryName ? 'selected' : '' %>><%= category.categoryName %></option>
+          <% }); %>
+      </select>
+      </div>
+
+      <div>
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" name="price"  value="<%=items.price%>" min="0"  required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <label for="offerDiscount">Offer Discount Percentage:</label>
+        <input type="number" id="offerDiscountPercentage" name="offerDiscountPercentage" value="<%=items.offerDiscountPercentage%>" min="0" max="100" step="0.01" required>
+      </div>
+
+      <div>
+        <label for="productStock">Product Stock:</label>
+        <input type="number" id="productStock" value="<%=items.stockCount%>"  name="stockCount" min="0" required>
+      </div>
+    </div>
+
+    <div>
+      <label for="productImage">Product Image:</label>
+      <input type="file" id="productImage" name="productImage" accept="image/*" multiple onchange="previewImages()">
+      <!-- <label id="CurrentImage">Current Image</label>
+    
+      <% if (items.productImage && items.productImage.length > 0) { %>
+        <% items.productImage.forEach((image, index) => { %>
+          <div class="image-container">
+            <img src="<%= image %>" style="max-width: 100px; max-height: 100px;">
+            <button class="delete-button" data-index="<%= index %>">Delete</button>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <p>No current images available</p>
+      <% } %> -->
+      <label for="existingImages" class="form-label"  id="CurrentImage">Existing Images:</label>
+    <div class="d-flex flex-wrap" id="imageContainer">
+    <% if (items.productImage && items.productImage.length > 0) { %>
+        <% items.productImage.forEach((image, index) => { %>
+            <div class="ms-2 image-item" data-index="<%= index %>">
+                <img src="<%= image %>" alt="productImage" class="prtimage" style="max-width: 100px; max-height: 100px;">
+                <span class="close-btn" onclick="deleteImage('<%= items._id %>', '<%= index %>')">&#10006;</span>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No current images available</p>
+    <% } %>
+    </div>
+  </div>
+    
+
+    <button type="submit">Edit Product</button>
+  </form>
+
+  <div class="bottom-content">
+    <li class="nav-link">
+        <a href="/adminLogin">
+            <i class="bx bx-log-out icons"></i>
+            <span class="text nav-text">Log Out</span>
+        </a>
+    </li>
+</div>
+</div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const editForm = document.getElementById("editForm");
+  
+      editForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+  
+        if (validateForm()) {
+          // Display SweetAlert for success
+          Swal.fire({
+            icon: "success",
+            title: "Product edited successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+  
+          // Optionally, you can redirect to another page after a delay
+          setTimeout(() => {
+            // Submit the form after the success alert
+            editForm.submit();
+          }, 1500);
+        }
+      });
+    });
+  
+    function validateForm() {
+      const productName = document.getElementById("productName").value.trim();
+      const productDescription = document.getElementById("productDescription").value.trim();
+      const productPrice = parseFloat(document.getElementById("productPrice").value);
+      const offerDiscountPercentage = parseFloat(document.getElementById("offerDiscountPercentage").value);
+      const productStock = parseInt(document.getElementById("productStock").value);
+  
+      // Validate Product Name
+      if (productName === '' || !/^[a-zA-Z0-9 ]+$/.test(productName)) {
+        showErrorAlert('Product name cannot be blank and should contain only alphanumeric characters and spaces.');
+        return false;
+      }
+  
+      // Validate Product Description
+      if (productDescription === '') {
+        showErrorAlert('Product description cannot be blank.');
+        return false;
+      }
+  
+      // Validate Product Price
+      if (isNaN(productPrice) || productPrice <= 0) {
+        showErrorAlert('Product price must be a positive number.');
+        return false;
+      }
+  
+      // Validate Offer Discount Percentage
+      if (isNaN(offerDiscountPercentage) || offerDiscountPercentage < 0 || offerDiscountPercentage > 100) {
+        showErrorAlert('Offer discount percentage must be between 0 and 100.');
+        return false;
+      }
+  
+      // Validate Product Stock
+      if (isNaN(productStock) || productStock < 0) {
+        showErrorAlert('Product stock must be a non-negative integer.');
+        return false;
+      }
+  
+      return true; // Form submission will occur if all validations pass
+    }
+  
+    function showErrorAlert(message) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: message
+      });
+    }
+  </script>
+  <script>
+    async function deleteImage(itemsid, index) {
+    const imageItem = document.querySelector('.image-item[data-index="' + index + '"]');
+
+    // Send a fetch request to the server to delete the image
+    try {
+        const response = await fetch('/deleteImage/' + itemsid, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ index }), // Send the index of the image to delete
+        });
+
+        if (response.ok) {
+            // If the server successfully deleted the image, remove it from the DOM
+            imageItem.remove();
+        } else {
+            console.error('Failed to delete image from the server');
+        }
+    } catch (error) {
+        console.error('Error deleting image:', error);
+    }
+}
+  </script>
+  
+
+</body>
+</html>

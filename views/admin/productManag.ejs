@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductManagement</title>
+    <link rel="stylesheet" href="/assets/admin/productAdmin.css">
+    <!-- DataTable HEADER-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+
+</head>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class='bx bxs-user-detail icons'></i>
+                
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/salesReport">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-log-out icons"></i>
+              <span class="text nav-text">Log Out</span>
+            </a>
+          </li>
+          
+          </li>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content" >
+      
+      <nav class="navbar" style="position: fixed;width:83.7%;z-index: 1;box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);padding-left: 30px;">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+      <div class="add-product-button">
+        <a href="/addproduct" class="add-link" style="margin-bottom: 20px;">Add New Product</a>
+        <a href="/category" class="category-link"  style="margin-bottom: 20px;">Category</a>
+    </div>
+    <!--TABLE HEADER-->
+    <table id="example" class="table table-striped" style="width:100%;">
+
+      <thead>
+          <tr >
+              <th style="background-color: #a40f0f; color: #ffffff;">latest</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Name</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Category</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Image</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Listed</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Stock</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Price</th>
+              <th style="background-color: #a40f0f; color: #ffffff;">Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% categories.forEach((items, index) => { %>
+              <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= items.productName %></td>
+                  <td><%= items.categoryName %></td>
+
+                  
+                    <td>
+                      <% items.productImage.forEach((image,index) => { %>
+                          <img src="<%= items.productImage[index] %>" alt="Product Image"  style="width:50px; height:50px;" >
+                      <% }); %>
+                  </td>
+                  </td>
+                  <td>
+                      <form action="/updateVisibility/<%= items._id %>" method="POST" class="visibility-form">
+                          <button type="submit" class="btn visibility <%= items.isVisible ? 'unblocked-user' : 'blocked-user' %>">
+                              <% if (items.isVisible) { %>
+                                  ACTIVE
+                              <% } else { %>
+                                 INACTIVE
+                              <% } %>
+                          </button>
+                      </form>
+                  </td>
+                  <td>
+                      
+                      <span><%= items.stockCount %></span>
+                     
+                  </td>
+                  <td>Rs<%= items.price %></td>
+                  <td>
+                    <form method="GET" action="/editproduct/<%= items._id %>">
+                      <button class="edit-btn">Edit</button>
+                    </form>
+                      <form method="POST" action="/deleteProduct/<%= items._id %>">
+                          <button class="delete-btn">Delete</button>
+                      </form>
+                  </td>
+              </tr>
+          <% }); %>
+      </tbody>
+  </table>
+  
+
+      <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    // Get all visibility buttons
+    const visibilityButtons = document.querySelectorAll(".visibility");
+
+    // Add click event listener to each visibility button
+    visibilityButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the form associated with the button
+            const form = button.closest('.visibility-form');
+
+            // Show SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to change the visibility status?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, change it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If user confirms, submit the form
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+
+    </script>
+    <script>
+     document.addEventListener("DOMContentLoaded", function() {
+    // Get all delete buttons
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    // Add click event listener to each delete button
+    deleteButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Show SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to delete this product?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If user confirms deletion, submit the form
+                    const form = button.closest('form'); // Find the closest form element
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+
+  </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    // Function to handle delete button click
+ 
+
+    
+
+          // Function to handle add product button click
+          function handleAddProductButtonClick() {
+              // Redirect to the add product page (replace with your actual URL)
+              window.location.href = "/addProduct";
+          }
+
+          // Function to handle category button click
+          function handleCategoryButtonClick() {
+              // Redirect to the add category page (replace with your actual URL)
+              window.location.href = "/add-category";
+          }
+
+          // Function to handle stock quantity button click
+          function handleQuantityButtonClick() {
+              // Find the corresponding quantity span and update its value
+              const quantitySpan = this.parentElement.querySelector("span");
+              if (quantitySpan) {
+                  let currentQuantity = parseInt(quantitySpan.textContent) || 0;
+
+                  if (this.classList.contains("quantity-btn")) {
+                      // Handle +/- buttons
+                      currentQuantity += this.classList.contains("quantity-btn-inc") ? 1 : -1;
+                  }
+
+                  // Update the quantity span
+                  quantitySpan.textContent = currentQuantity < 0 ? 0 : currentQuantity;
+              }
+          }
+
+          // Function to handle edit button click
+          function handleEditButtonClick() {
+              // Redirect to the edit product page (replace with your actual URL)
+              window.location.href = "/editproduct";
+          }
+
+          // Attach event listeners to delete buttons
+          const deleteButtons = document.querySelectorAll(".delete-btn");
+    deleteButtons.forEach(function (button) {
+      button.addEventListener("click", handleDeleteButtonClick);
+    });
+          // Attach event listener to add product button
+          const addProductButton = document.querySelector(".add-link");
+          addProductButton.addEventListener("click", handleAddProductButtonClick);
+
+          // Attach event listener to category button
+          const categoryButton = document.querySelector(".category-link");
+          categoryButton.addEventListener("click", handleCategoryButtonClick);
+
+          // Attach event listeners to stock quantity buttons
+          const quantityButtons = document.querySelectorAll(".quantity-btn");
+          quantityButtons.forEach(function (button) {
+              button.addEventListener("click", handleQuantityButtonClick);
+          });
+
+          // Attach event listener to edit button
+          const editButton = document.querySelector(".edit-btn");
+          editButton.addEventListener("click", handleEditButtonClick);
+      });
+  </script>
+      <!-- DATATABLE  SCRIPT-->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      $('#example').DataTable({
+          "order": [[ 0, "desc" ]] // This will sort the table by the first column (Id) in descending order
+      });
+  });
+</script>
+      
+    
+  </div>
+    
+</body>
+</html>

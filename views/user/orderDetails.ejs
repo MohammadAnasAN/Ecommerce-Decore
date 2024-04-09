@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <style>
+        /* Center the page content */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/002/331/442/original/watercolor-peach-brown-background-for-paper-design-vector.jpg'); /* Replace with the path to your image */            border-radius: 10px; /* Rounded corners */
+            padding: 30px; /* Background color for the entire page */
+        }
+         p {
+        color: maroon;
+        font-size: 16px; /* You can adjust the font size as needed */
+    }
+
+
+        /* Container for the content */
+        .container {
+            max-width: 800px; /* Adjust the width of the content */
+            width: 90%; /* Adjust the width of the content */
+            padding: 20px;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+            background-color: #eae0d6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CSS for top navbar */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #fe5757, #8B0000);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px;
+        }
+        .company-logo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: 10px;
+        }
+        .company-name {
+            color: white;
+            font-size: 20px; /* Reduced font size */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CSS for each order item */
+        .order-item {
+            display: flex;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 50px; /* Rounded corners */
+            padding: 20px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #f1ceb990, #f9aea2ac);
+        }
+
+        /* CSS for product image */
+        .product-image {
+            flex: 0 0 100px; /* Fixed width for the image */
+            margin-right: 20px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            border-radius: 30px; /* Rounded corners */
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* CSS for product details */
+        .product-details {
+            flex: 1;
+        }
+
+        /* CSS for order ID */
+        .order-id {
+            text-align: center;
+            margin-bottom: 20px;
+            
+        }
+
+        /* CSS for shipping address */
+        .shipping-address {
+            margin-bottom: 20px;
+        }
+
+        /* CSS for product price */
+        .product-price {
+            margin-bottom: 10px;
+        }
+
+        /* CSS for payment status */
+        .payment-status {
+            margin-bottom: 10px;
+        }
+
+        /* CSS for total price */
+        .total-price {
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        /* CSS for footer */
+        .footer {
+            background-color: #800000;
+            color: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            text-align: center;
+            border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
+            width: 100%;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+        .home-button {
+           
+            padding: 10px 20px;
+            background: linear-gradient(to right, #f98f8fc0, #b81d059c);
+            color: rgb(244, 231, 231);
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+
+        }
+        .home-button:hover {
+            background-color: #770202; /* Peach */
+        }
+        /* CSS for button container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+.order-history-button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #f98f8fc0, #b81d059c);
+            color: rgb(244, 231, 231);
+        border: none;
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+
+    }
+
+    .order-history-button:hover {
+        background-color: #770202; /* Peach */
+        
+    }
+
+    </style>
+</head>
+<body>
+    <!-- Container for the content -->
+    <div class="container">
+
+        <!-- Top Navbar -->
+        <div class="top-header">
+            <div class="company-logo"><img
+                src="/img/furniture-logo.jpg"
+                alt="Decore Company Logo"
+                class="company-logo"
+              /></div>
+            <div class="company-name">DeCore</div>
+        </div>
+
+        <!-- Order Items -->
+        
+        <% order.items.forEach(item => { %>
+            <div class="order-item" >
+                <div class="product-image">
+                    <!-- Display product image here -->
+                    <img src="<%= item.product.productImage[0] %>" alt="Product Image">
+                </div>
+                <div class="product-details">
+                    <!-- Display product details here -->
+                    <h3><%= item.product.productName %></h3>
+                    <p>Description: <%= item.product.description %></p>
+                    <p>Quantity: <%= item.quantity %></p>
+                    <p>Unit Price: <%= item.unitPrice %></p>
+                   </div>
+                   <div class="right-side">
+                    <p>Payment method: <%= order.paymentMethod %></p>
+                    <p>Date: <%= order.createdAt %></p>
+                </div>
+            </div>
+        <% }); %>
+     
+
+        <!-- Order ID -->
+        <div class="order-id" style="font-size: 20px;font-weight: bold;">
+            Order ID: #Decore<%= order._id.toString().slice(-12) %>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="shipping-address" style="font-size: 17px;">
+            Shipping Address:  <%= order.shippingAddress.fullName%>,<%= order.shippingAddress.houseName %>, <%= order.shippingAddress.streetAddress %>, <%= order.shippingAddress.city %>, <%= order.shippingAddress.state %>, <%= order.shippingAddress.pinCode %>
+        </div>
+
+        <!-- Product Price -->
+        <div class="product-price" style="font-size: 18px;">
+            Product Price: <%= order.totalPrice %>
+        </div>
+
+        <!-- Payment Status -->
+        <div class="payment-status" style="font-size: 18px;">
+            Payment Status: <%= order.paymentstatus %>
+        </div>
+
+        <!-- Total Price -->
+        <div class="total-price">
+            <h2>Total Price: <%= order.totalPrice %></h2>
+        </div>
+        <div class="button-container">
+            <div>
+                <button class="home-button" onclick="goToHomePage()">Continue Shopping</button>
+
+            </div>
+            <div>
+                <button class="order-history-button" onclick="goToOrderHistory()">Order History</button>
+
+            </div>
+        </div>
+        
+
+
+
+        <!-- Footer -->
+        <div class="footer" >
+            <!-- Your footer content goes here -->
+            &copy; 2024 DeCore. All rights reserved.
+        </div>
+        
+    </div>
+    <script>
+        function goToHomePage() {
+            window.location.href = '/home'; // Replace '/home' with your actual home page URL
+        }
+    </script>
+    <script>
+        function goToOrderHistory() {
+            window.location.href = '/orderPage'; // Replace '/home' with your actual home page URL
+        }
+    </script>
+</body>
+</html>   

@@ -1,0 +1,88 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    background-image:url("/img/img.jpg");
+    background-size: cover;
+    
+    background-repeat: no-repeat;
+    height: 100vh; 
+
+}
+h2{
+    text-align: center;
+    margin-bottom: 30px;
+    color:rgb(109, 21, 18);
+    text-shadow : 2px 2px 4px rgba(253, 219, 175, 0.329);
+}
+.form-container{
+    width:300px;
+    
+    margin:0 auto;
+    padding: 20px;
+    border:1px solid #ccc;
+    border-radius:10px ;
+    background-color: rgba(255, 255, 255, 0.329);
+
+}
+.form-group{
+    margin-bottom:15px;
+}
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+    color:rgb(129, 23, 5);
+    text-shadow : 2px 2px 4px  rgba(0, 0, 0, 0.316);
+}
+.form-group input{
+    width:100%;
+    padding:8px;
+    font-size:13px;
+    border:1px solid #ccc;
+    border-radius: 3px;
+    background-color: hsla(0, 0%, 100%, 0.311);
+
+}
+.submit-btn{
+    display:block;
+    width:100%;
+    padding:10px;
+    background-color: rgb(99, 13, 0);
+    color: aliceblue;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+.submit-btn:hover{
+    background-color: rgb(255, 218, 123);
+    color:black;
+
+}
+p{
+    margin-top:15px;
+    text-align: center;
+    font-size: 12px;
+}
+.otp-input-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.otp-input-container input {
+    width: 2em; 
+    height: 2em; 
+    margin: 0 0.5em; 
+    text-align: center;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}

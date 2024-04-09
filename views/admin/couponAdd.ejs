@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupon adding</title>
+    <link rel="stylesheet" href="/assets/admin/dash.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background: linear-gradient(45deg, #fc5454bd, #f4d3d3);
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 3D shadow effect */
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class='bx bxs-user-detail icons'></i>
+                
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/salesReport">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="/adminLogin">
+              <i class="bx bx-log-out icons"></i>
+              <span class="text nav-text">Log Out</span>
+            </a>
+          </li>
+          
+          </li>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      
+      <nav class="navbar">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+
+      <div class="container">
+        <h1>Add Coupon</h1>
+        <form action="/saveCoupon" method="POST"  onsubmit="return validateAndSubmit()">
+            <label for="code">Coupon Code:</label>
+            <input type="text" id="code" name="code" required>
+
+            <label for="discountPercentage">Discount Percentage:</label>
+            <input type="number" id="discountPercentage" name="discountPercentage" required>
+
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="date" id="expiryDate" name="expiryDate" required>
+
+            <label for="minCartValue">Min Cart Value:</label>
+            <input type="number" id="minCartValue" name="minCartValue" value="0">
+
+            <label for="usageLimit">Usage Limit (Leave blank for unlimited):</label>
+            <input type="number" id="usageLimit" name="usageLimit">
+
+            <button type="submit">Save Coupon</button>
+        </form>
+    </div>
+      <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+    </div>
+      
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    function validateAndSubmit() {
+        // Get form input values
+        const code = document.getElementById("code").value.trim();
+        const discountPercentage = parseInt(document.getElementById("discountPercentage").value);
+        const expiryDate = document.getElementById("expiryDate").value;
+        const minCartValue = parseInt(document.getElementById("minCartValue").value);
+        const usageLimit = parseInt(document.getElementById("usageLimit").value);
+
+        // Validate Coupon Code
+        if (code === '' || /^\s*$/.test(code)) {
+            showErrorAlert('Coupon code cannot be blank or contain only whitespaces.');
+            return false;
+        }
+
+        // Validate Discount Percentage
+        if (discountPercentage < 0 || discountPercentage > 100 || isNaN(discountPercentage)) {
+            showErrorAlert('Discount percentage must be between 0 and 100.');
+            return false;
+        }
+
+        // Validate Min Cart Value
+        if (minCartValue < 0 || minCartValue > 7000 || isNaN(minCartValue)) {
+            showErrorAlert('Min Cart Value must be between 0 and 7000.');
+            return false;
+        }
+
+        // If all validations pass, submit the form
+        return true;
+    }
+
+    function showErrorAlert(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Error',
+            text: message
+        });
+    }
+</script>
+    
+</body>
+</html>

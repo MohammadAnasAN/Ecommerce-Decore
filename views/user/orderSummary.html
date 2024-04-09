@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (your existing head content) ... -->
+
+    <style>
+        /* ... (your existing styles) ... */
+    </style>
+</head>
+<body>
+<!-- ... (your existing body content) ... -->
+
+<!-- Existing footer content -->
+<footer class="footer">
+    <!-- ... (your existing footer content) ... -->
+</footer>
+
+<!-- JavaScript dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+<!-- Include SweetAlert script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Custom JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cancelButtons = document.querySelectorAll(".cancel-order");
+        const returnButtons = document.querySelectorAll(".return-order");
+
+        function handleOrderCancellation(button) {
+            const orderId = button.dataset.orderId;
+            const itemId = button.dataset.itemId;
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Yes, cancel it!",
+                input: "text",
+                inputPlaceholder: "Reason for cancellation",
+                inputValidator: (value) => {
+                    return !value && "Please provide a reason for cancellation!";
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reason = result.value;
+                    // Send cancellation request to the server
+                    fetch(`/cancelOrder/${orderId}/${itemId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ reason }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                        console.log('Order cancellation successful:', data);
+
+                // Update the status display for each item
+                         const statusDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .status-display`);
+                          statusDisplays.forEach((statusDisplay) => {
+                         statusDisplay.textContent = newStatus;
+                         });
+
+                        
+
+              // Optionally, you can update the UI to show "Order Cancelled"
+              button.closest(".cancel-button").innerHTML = '<p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>';
+
+               // Show the "Order Cancelled" message
+               const orderCancelledDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .order-cancelled`);
+                        orderCancelledDisplays.forEach((orderCancelledDisplay) => {
+                            orderCancelledDisplay.style.display = 'block';
+                        });
+            })
+                        .catch(error => {
+                            console.error('Error cancelling order:', error);
+                            // Handle errors here
+                        });
+                }
+            });
+        }
+
+        function handleOrderReturn(button) {
+            const orderId = button.dataset.orderId;
+            const itemId = button.dataset.itemId;
+            const currentStatus = button.dataset.currentStatus;
+
+            if (currentStatus === 'delivered') {
+                // If the status is 'delivered', change the button to 'return'
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#6c757d",
+                    confirmButtonText: "Yes, return it!",
+                    input: "text",
+                    inputPlaceholder: "Reason for return",
+                    inputValidator: (value) => {
+                        return !value && "Please provide a reason for return!";
+                    },
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const reason = result.value;
+                        // Send return request to the server
+                        fetch(`/returnOrder/${orderId}/${itemId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ reason }),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Order return successful:', data);
+                                // Update the UI to show "Order Returned"
+                                button.closest(".cancel-button").innerHTML = '<p class="order-returned" style="color: #c82333;font-weight: bold;">Order Returned</p>';
+                            })
+                            .catch(error => {
+                                console.error('Error returning order:', error);
+                                // Handle errors here
+                            });
+                    }
+                });
+            } else {
+                handleOrderCancellation(button);
+            }
+        }
+
+        // Attach click event listeners to cancel buttons
+        cancelButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                handleOrderCancellation(button);
+            });
+        });
+
+        // Attach click event listeners to return buttons
+        returnButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                handleOrderReturn(button);
+            });
+        });
+    });
+</script>
+</body>
+</html>

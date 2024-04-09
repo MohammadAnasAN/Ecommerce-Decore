@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <link rel="stylesheet" href="/assets/admin/addproduct.css">
+  <link rel="stylesheet" href="/assets/admin/editproduct.css">
+  <link
+  href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+  rel="stylesheet"
+/>  
+
+  <style>
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      z-index: 1000;
+    }
+  
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="sidebar">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="/img/admin.png" alt="logo" />
+        </span>
+        <div class="text header-text">
+          <span class="main">ADMIN</span>
+          <br>
+          <span class="sub">is now active</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="/dash">
+              <i class="bx bx-home-alt icons"></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/userAdmin">
+              <i class='bx bxs-user-detail icons'></i>
+              
+              <span class="text nav-text">User Management</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/productManag">
+              <i class='bx bx-cart-add icons'></i>
+              <span class="text nav-text">Product Management</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/orderManage">
+              <i class='bx bx-money-withdraw icons'></i>
+              <span class="text nav-text">Order & Payments</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/salesReport">
+              <i class='bx bxs-report icons'></i>
+              <span class="text nav-text">Sales Report</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="/coupon">
+              <i class='bx bxs-coupon icons'></i>
+              <span class="text nav-text">coupon</span>
+            </a>
+          </li>
+          <!-- <li class="nav-link">
+            <a href="#">
+              <i class='bx bxs-sticker icons'></i>
+              <span class="text nav-text">Banner</span>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="nav-link">
+          <a href="#">
+            <i class="bx bx-log-out icons"></i>
+            <span class="text nav-text">Log Out</span>
+          </a>
+        </li>
+        
+        </li>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content" style="margin-left: 250px;" >
+    
+    <nav class="navbar"style="position: fixed;width:83.7%;box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);">
+
+        <div class="navbar-left">
+            <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+            <div class="admin-details">
+                <p class="admin-name">Mohammad Anas AN</p>
+                <p class="admin-role">Administrator</p>
+            </div>
+        </div>
+        <div class="navbar-right">
+         
+            
+            <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+        </div>
+        <div class="navCenter">
+          <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+          <h3>DECORE COMPANY</h3>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  <h2>Add Product</h2>
+
+  <form action="/AddProduct/:<%=product._id%>" id="form" method="post" enctype="multipart/form-data">    <!-- Form content -->
+
+    <div class="form-group">
+      <div>
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required>
+      </div>
+
+      <div>
+        <label for="productDescription">Product Description:</label>
+        <textarea id="productDescription" name="description" rows="4" required></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <label for="productCategory">Product Category:</label>
+        <select id="productCategory" name="selectCategory" required>
+          <option>Select The Category</option>
+                        <% categories.forEach((category) => { %>
+                            <option><%= category.categoryName %></option>
+                        <% }); %>
+        </select>
+      </div>
+
+      <div>
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" name="price" min="0"  required>
+      </div>
+      
+    </div>
+
+    <div class="form-group">
+      <div>
+        <label for="offerDiscount">Offer Discount Percentage:</label>
+        <input type="number" id="offerDiscountPercentage" name="offerDiscountPercentage" min="0" max="100" step="0.01" required>
+      </div>
+   
+
+      <div>
+        <label for="productStock">Product Stock:</label>
+        <input type="number" id="productStock" name="stockCount" min="0" required>
+      </div>
+      <!-- <div>
+        <label for="productQuantity">Product Quantity:</label>
+        <input type="number" id="productQuantity" name="stockCount" min="0" step="0.01" required>
+      </div> -->
+    </div>
+
+    <div>
+      <label for="productImage">Product Image:</label>
+      <input type="file" id="productImage" name="productImage" accept="image/*" multiple required onchange="previewImages()" >
+    </div>
+
+    <button type="submit">Add Product</button>
+  </form>
+
+<!-- pop up -->
+  <div id="overlay" onclick="closePopup()"></div>
+
+  <div id="popup">
+    <p>enter the correct format </p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("form");
+  
+      form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+  
+        if (validateForm()) {
+          // Use Fetch API to submit the form
+          fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Display SweetAlert for success
+              Swal.fire({
+                icon: "success",
+                title: "Product added successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+  
+              // Optionally, you can redirect to another page after a delay
+              setTimeout(() => {
+                window.location.href = "/productManag";
+              }, 1500);
+            } else {
+              // Display SweetAlert for other responses or errors
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message || "Failed to add product. Please try again.",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error submitting form:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Internal Server Error. Please try again later.",
+            });
+          });
+        }
+      });
+    });
+  
+    function validateForm() {
+      const productName = document.getElementById("productName").value.trim();
+      const productPrice = parseFloat(document.getElementById("productPrice").value);
+      const offerDiscountPercentage = parseFloat(document.getElementById("offerDiscountPercentage").value);
+      const productStock = parseInt(document.getElementById("productStock").value);
+      const productDescription = document.getElementById("productDescription").value.trim();
+  
+      // Validate Product Name
+      if (productName === '' || !/^[a-zA-Z0-9 %*():""'`~]+$/.test(productName)) {
+        showErrorAlert('Product name cannot be blank and should contain only alphanumeric characters and spaces.');
+        return false;
+      }
+  
+      // Validate Product Price
+      if (isNaN(productPrice) || productPrice <= 0) {
+        showErrorAlert('Product price must be a positive number.');
+        return false;
+      }
+
+      // Validate Product Description
+    if (productDescription === '') {
+      showErrorAlert('Product description cannot be blank.');
+      return false;
+    }
+  
+      // Validate Offer Discount Percentage
+      if (isNaN(offerDiscountPercentage) || offerDiscountPercentage < 0 || offerDiscountPercentage > 100) {
+        showErrorAlert('Offer discount percentage must be between 0 and 100.');
+        return false;
+      }
+  
+      // Validate Product Stock
+      if (isNaN(productStock) || productStock < 0) {
+        showErrorAlert('Product stock must be a non-negative integer.');
+        return false;
+      }
+  
+      return true; // Form submission will occur if all validations pass
+    }
+  
+    function showErrorAlert(message) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: message
+      });
+    }
+  </script>
+
+  
+  
+
+</body>
+</html>

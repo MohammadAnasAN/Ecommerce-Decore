@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Address</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+        .col-12{
+             margin-top: 5px;
+        }
+        .col-lg-8{
+            margin-top:80px;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-4 pb-5">
+          <!-- Account Sidebar-->
+          <div class="author-card pb-3">
+            <div
+              class="author-card-cover"
+              style="
+                background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);
+              "
+            >
+              <a
+                class="btn btn-style-1 btn-white btn-sm"
+                href="#"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="You currently have 290 Reward points to spend"
+                ><i class="fa fa-award text-md"></i>&nbsp;290 points</a
+              >
+            </div>
+            <div class="author-card-profile">
+              <div class="author-card-avatar">
+                <img src="/img/pro.jpg" alt="Daniel Adams" />
+              </div>
+              <div class="author-card-details">
+                <h3 class="author-card-name text-lg">Hey,<%=userDetails.name%></h3>
+                          
+                          <span class="author-card-position"><%=userDetails.email%></span>
+                <input
+                  type="file"
+                  id="profileImageInput"
+                  style="display: none"
+                  accept="image/*"
+                />
+                <label
+                  for="profileImageInput"
+                  class="btn btn-style-1 btn-peach btn-sm mt-2"
+                  style="
+                    padding: 0rem 0.1rem;
+                    background-color: rgba(128, 0, 0, 0.104);
+                    color: #ba3434;
+                    border-color: #ff838343;
+                  "
+                  ></label
+                >
+              </div>
+            </div>
+          </div>
+          <!-- <div class="wizard">
+                  <nav class="list-group list-group-flush">
+                      <a class="list-group-item" href="#">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                                  <div class="d-inline-block font-weight-medium text-uppercase">Orders List</div>
+                              </div><span class="badge badge-secondary">6</span>
+                          </div>
+                      </a><a class="list-group-item active" href="#"><i class="fe-icon-user text-muted"></i>Profile Settings</a><a class="list-group-item" href="#"><i class="fe-icon-map-pin text-muted"></i>Addresses</a>
+                      <a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page" target="__blank">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div><i class="fe-icon-heart mr-1 text-muted"></i>
+                                  <div class="d-inline-block font-weight-medium text-uppercase">My Wishlist</div>
+                              </div><span class="badge badge-secondary">3</span>
+                          </div>
+                      </a>
+                      <a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-account-tickets" target="__blank">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div><i class="fe-icon-tag mr-1 text-muted"></i>
+                                  <div class="d-inline-block font-weight-medium text-uppercase">My Tickets</div>
+                              </div><span class="badge badge-secondary">4</span>
+                          </div>
+                      </a>
+                  </nav>
+              </div> -->
+          <div class="wizard">
+            <nav class="list-group list-group-flush">
+              <a class="list-group-item order-list" href="#"> Order List </a>
+              <a class="list-group-item profile-settings" href="/newprofile">
+                Profile Settings
+              </a>
+              <a
+                class="list-group-item addresses active"
+                href="/Address"
+              >
+                Addresses
+              </a>
+              <a class="list-group-item my-wishlist" href="/whishlist"> My Wishlist </a>
+              <a
+                class="list-group-item my-tickets"
+                href="/cart"
+              >
+                My Cart
+              </a>
+              <a class="list-group-item my-tickets" href="/wallet">
+                My Wallet
+            </a>
+            </nav>
+          </div>
+        </div>
+        <!-- Profile Settings-->
+        <div class="col-lg-8 pb-5">
+          <h4>Edit Address</h4>
+            <form method="POST" action="/posteditAddress/<%= address._id %>" class="row">
+             
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="last-name">Full Name</label>
+                  <input class="form-control" type="text" id="last-name" name="fullName" value="<%= address.fullName %>" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="house-name">House Name</label>
+                  <input class="form-control" type="text" id="house-name"  name="houseName" value="<%= address.houseName %>" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="street-address">Street Address</label>
+                  <input class="form-control" type="text" id="street-address"  name="streetAddress" value="<%= address.streetAddress %>" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <select class="form-control" id="country" name="country" required="">
+                    <% const countries = ['India', /* add more countries here */]; %>
+                    <option value="<%= address.country %>"><%= address.country %></option>
+                    <% countries.forEach(country => { %>
+                        <% if (address.country !== country) { %>
+                            <option value="<%= country %>"><%= country %></option>
+                        <% } %>
+                    <% }); %>
+                    <!-- Add more countries here -->
+                </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="state">State</label>
+                  <select class="form-control" id="state" name="state" required="">
+                    <% const states = ['Kerala', 'Tamilnadu', 'Karnataka', 'Gujarat', 'Maharashtra']; %>
+                    <option value="<%= address.state %>"><%= address.state %></option>
+                    <% states.forEach(state => { %>
+                        <% if (address.state !== state) { %>
+                            <option value="<%= state %>"><%= state %></option>
+                        <% } %>
+                    <% }); %>
+                    <!-- Add more states here -->
+                </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input class="form-control" type="text" id="city" name="city" value="<%= address.city %>" required="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pin-code">Pin Code (ZIP Code)</label>
+                    <input class="form-control" type="number" id="pin-code" name="pinCode" value="<%= address.pinCode %>"  min="100000" max="999999" required="">
+                  </div>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-style-1 add-address-button btn-primary mt-3 mt-sm-0" type="button" onclick="validateAndEditAddress()">Save Changes</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var listItems = document.querySelectorAll(".list-group-item");
+    
+        listItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            listItems.forEach(function (innerItem) {
+              innerItem.classList.remove("active");
+            });
+            item.classList.add("active");
+          });
+        });
+      });
+    
+      function validateAndEditAddress() {
+        const fullName = document.getElementById("last-name").value.trim();
+        const houseName = document.getElementById("house-name").value.trim();
+        const streetAddress = document.getElementById("street-address").value.trim();
+        const country = document.getElementById("country").value;
+        const state = document.getElementById("state").value;
+        const city = document.getElementById("city").value.trim();
+        const pinCode = document.getElementById("pin-code").value.trim();
+    
+        // Regular expressions for validation
+        const fullNameRegex = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/; // Allow spaces between words
+        const houseNameRegex = /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/; // Allow spaces between words
+        const streetAddressRegex = /^\S.*$/; // Must not contain whitespace
+        const pinCodeRegex = /^\d{6}$/; // Must be 6 digits
+    
+        // Validation
+        if (!fullNameRegex.test(fullName)) {
+          showErrorAlert("Full name must not contain special characters or whitespace.");
+          return;
+        }
+    
+        if (!houseNameRegex.test(houseName)) {
+          showErrorAlert("House name must not contain special characters or whitespace.");
+          return;
+        }
+    
+        if (!streetAddressRegex.test(streetAddress)) {
+          showErrorAlert("Street address must not contain whitespace.");
+          return;
+        }
+    
+        if (!pinCodeRegex.test(pinCode)) {
+          showErrorAlert("Pin code must be 6 digits.");
+          return;
+        }
+    
+        // If all validations pass, submit the form
+        document.querySelector("form").submit();
+
+        Swal.fire({
+      icon: 'success',
+      title: 'Address Edited successfully!',
+      showConfirmButton: false,
+      timer: 1500
+    });
+      }
+    
+      function showErrorAlert(message) {
+        Swal.fire({
+          icon: "error",
+          title: "Validation Error",
+          text: message,
+        });
+      }
+    </script>
+  </body>
+</html>

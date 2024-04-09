@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+    <link rel="stylesheet" href="/assets/user/cart.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <style>
+        .container{
+            height:550px;
+
+            
+           
+        }
+        .cart::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  .quantity-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the quantity input */
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  margin: 0 5px;
+  background: transparent;
+    border: none;
+    color: maroon;
+    font-weight: bold;
+    
+    text-align: center;
+}
+
+/* Style for the increment and decrement buttons */
+.increment-btn,
+.decrement-btn {
+  width: 25px;
+  height: 25px;
+  background-color: #6e07045e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.increment-btn:hover,
+.decrement-btn:hover {
+  background-color: #fa6e4f;
+}
+@media (max-width: 320px) {
+     .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    
+  }
+  
+
+ 
+  @media (max-width: 320px) {
+      
+    .navbar{
+      width:425px
+    }
+    .footer{
+      width:425px
+    }
+   
+    .container {
+      /* Adjust padding for smaller screens */
+      width:380px;
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .password {
+     /* Adjust padding for smaller screens */
+      padding-bottom: 5rem;
+     margin-bottom: 50px;
+      
+      width: 150px;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+    
+    
+  }
+
+
+  @media (max-width: 376px) {
+    .container {
+      /* Adjust padding for smaller screens */
+      width:425px;
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+  @media (max-width: 769px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+     
+      }
+       .body{
+        width:100%
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+  }
+  
+
+        
+    </style>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-lg-4 pb-5">
+              <!-- Account Sidebar-->
+              <div class="author-card pb-3">
+                  <div class="author-card-cover" style="background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                  <div class="author-card-profile">
+                      <div class="author-card-avatar"><img src="/img/pro.jpg" alt="Daniel Adams">
+                      </div>
+                      <div class="author-card-details">
+                          <h3 class="author-card-name text-lg">Hey,<%=userDetails.name%></h3><span class="author-card-position"><%=userDetails.email%></span>
+                          <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
+                          <label for="profileImageInput" class="btn btn-style-1 btn-peach btn-sm mt-2" style="padding: 0rem 0.1rem; background-color: rgba(128, 0, 0, 0.104); color: #ba3434;border-color: #ff838343;"></label>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item order-list" href="/orderPage">
+                        Order List
+                    </a>
+                    <a class="list-group-item profile-settings" href="/newprofile">
+                        Profile Settings
+                    </a>
+                    <a class="list-group-item addresses" href="/Address">
+                        Addresses
+                    </a>
+                    <a class="list-group-item my-wishlist" href="/whishlist">
+                        My Wishlist
+                    </a>
+                    <a class="list-group-item my-tickets active" href="/cart">
+                        My Cart
+                    </a>
+                    <a class="list-group-item my-tickets" href="/wallet">
+                      My Wallet
+                  </a>
+                </nav>
+            </div>
+            
+          </div>
+          <!-- Profile Settings-->
+          <div class="col-lg-8 pb-5">
+
+            <div class="cart">
+                <div class="cart-title">Shopping Cart</div>
+                <div class="cart-table-container">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="cart-items">
+                      <% if (userCart && userCart.items.length > 0) { %>
+                        <% userCart.items.reverse().forEach((item,index) => { %>
+                          <tr>
+                            <td><img src="<%= item.product.productImage[0] %>" alt="<%= item.product.productName %>" class="product-image"></td>
+                            <td><%= item.product.productName %></td>
+                            <td>
+                              <% if (item.product.offerDiscountPercentage && item.product.offerDiscountPercentage > 0) { %>
+                                 <span class="product_price"> $<%= (item.product.price * (100 - item.product.offerDiscountPercentage) / 100).toFixed(2) %></span>
+                                  <span style="text-decoration: line-through;">$<%= item.product.price %></span>
+                              <% } else { %>
+                                 <span class="product_price"> $<%= item.product.price %></span>
+                              <% } %>
+                          </td>
+                          
+                            <td>
+                            <button class="decrement-btn" style="border-radius: 50px;" data-product-id="<%= item.product._id %>">-</button>
+                            <input type="number" min="1" max="<%= item.product.stockCount %>" value="<%= item.quantity %>" class="quantity-input" data-product-id="<%= item.product._id %>" data-stock-count="<%= item.product.stockCount %>">
+                            <button class="increment-btn" style="border-radius: 50px;" data-product-id="<%= item.product._id %>">+</button>
+                            </td>
+                            <td>
+                              <% 
+                              const totalPrice = (item.product.price * item.quantity).toFixed(2);
+                              const offerDiscount = item.product.offerDiscountPercentage || 0; // Retrieve offer discount percentage, default to 0 if not available
+                              const discountedTotalPrice = totalPrice * (1 - offerDiscount / 100); // Calculate discounted total price
+                              %>
+                              $<%= discountedTotalPrice.toFixed(2) %>
+                          </td>
+                          
+                            <td>
+                              <!-- <form action="/removeFromCart/<%= item.product._id %>" method="post">
+                                <button type="submit" class="remove-btn">Remove</button>
+                              </form> -->
+                              <form id="removeForm<%= index+1 %>" action="/removeFromCart/<%= item.product._id %>" method="post">
+                                <button type="button" class="remove-btn" style="padding:5px ;" onclick="confirmRemove('<%= index+1 %>')">Remove</button>
+                              </form>
+                            </td>
+                          </tr>
+                        <% }); %>
+                      <% } else { %>
+                        <tr>
+                          <td colspan="6">Your cart is empty</td>
+                        </tr>
+                      <% } %>
+                    </tbody>
+                </table>
+                </div>
+                <% if (userCart && userCart.items.length > 0) { %>
+
+                <div class="cart-footer">
+                    <div class="total-price">Total: Rs.<span class="cart-total"></span></div>
+                    <button class="checkout-btn" onclick="redirectToCheckout()">Checkout</button>
+                </div>
+                <% } else { %>
+                  <tr>
+                    <td colspan="6"></td>
+                  </tr>
+                <% } %>
+            </div>
+            </div>
+              
+    
+</div>
+      </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   
+      <script>
+        var MenuItems = document.getElementById('MenuItems');
+        MenuItems.style.maxHeight = '0px';
+      
+        function menutoggle() {
+          if (MenuItems.style.maxHeight == '0px') {
+            MenuItems.style.maxHeight = '200px';
+          } else {
+            MenuItems.style.maxHeight = '0px';
+          }
+        }
+      </script>
+      <script>
+        function redirectToCheckout() {
+          // Replace 'checkout.html' with the actual URL of your checkout page
+          window.location.href = '/checkout';
+        }
+      </script>
+          <!-- <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const cartItems = document.querySelector('.cart-items');
+                const cartTotal = document.querySelector('.cart-total');
+                const quantityInputs = document.querySelectorAll('.quantity-input');
+                const editButtons = document.querySelectorAll('.edit-btn');
+                const removeButtons = document.querySelectorAll('.remove-btn');
+    
+                // Function to update total price
+                function updateTotal() {
+                    let total = 0;
+                    document.querySelectorAll('.cart-items tr').forEach(function (row) {
+                        const price = parseFloat(row.children[2].textContent.slice(1)); // Getting the price without $ sign
+                        const quantity = parseInt(row.querySelector('.quantity-input').value); // Getting the quantity from input field
+                        const subtotal = price * quantity;
+                        row.children[4].textContent = '$' + subtotal.toFixed(2);
+                        total += subtotal;
+                    });
+                    cartTotal.textContent = total.toFixed(2);
+                }
+    
+                // Quantity input change event
+                quantityInputs.forEach(function (input) {
+                    input.addEventListener('change', function () {
+                        updateTotal();
+                    });
+                });
+    
+                // Edit button click event
+                editButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        const row = this.closest('tr');
+                        const productName = row.children[1].textContent;
+                        const productPrice = parseFloat(row.children[2].textContent.slice(1)); // Getting the price without $ sign
+                        const productQuantity = parseInt(row.querySelector('.quantity-input').value); // Getting the quantity from input field
+                        const newProductName = prompt('Enter new product name:', productName);
+                        const newProductPrice = parseFloat(prompt('Enter new product price:', productPrice));
+                        const newProductQuantity = parseInt(prompt('Enter new product quantity:', productQuantity));
+                        if (newProductName && !isNaN(newProductPrice) && !isNaN(newProductQuantity)) {
+                            row.children[1].textContent = newProductName;
+                            row.children[2].textContent = '$' + newProductPrice.toFixed(2);
+                            row.querySelector('.quantity-input').value = newProductQuantity;
+                            row.children[4].textContent = '$' + (newProductPrice * newProductQuantity).toFixed(2);
+                            updateTotal();
+                        }
+                    });
+                });
+    
+                // // Remove button click event
+                // removeButtons.forEach(function (button) {
+                //     button.addEventListener('click', function () {
+                //         this.closest('tr').remove();
+                //         updateTotal();
+                //     });
+                // });
+    
+                // Initially update total
+                updateTotal();
+            });
+        </script> -->
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+  const colLG8 = document.querySelector('.col-lg-8');
+
+  // Check if the content inside col-lg-8 exceeds a certain height
+  if (colLG8.scrollHeight > 500) {
+    colLG8.classList.add('show-scroll');
+  }
+});
+
+        </script>
+        <script>
+            function showConfirmation() {
+              if (confirm("Are you sure you want to remove this item?")) {
+                
+                console.log("Item removed!");
+              } else {
+               
+                console.log("Removal canceled!");
+              }
+            }
+          </script>
+    
+
+    <!-- Include SweetAlert library in your HTML (ensure the correct path) -->
+<!-- Include SweetAlert library in your HTML (ensure the correct path) -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+  function confirmRemove(i) {
+    // Show SweetAlert confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Want to remove this item from the cart?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, remove it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If user confirms, submit the form
+        document.getElementById(`removeForm${i}`).submit();
+      }
+    });
+  }
+  function reloadPage() {
+    location.reload();}
+</script>
+<script>
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   const quantityInputs = document.querySelectorAll('.quantity-input');
+
+  //   quantityInputs.forEach(function (input) {
+  //     input.addEventListener('input', function () {
+  //       const productId = this.getAttribute('data-product-id');
+  //       const newQuantity = this.value;
+
+  //       // Send a request to update quantity to the server
+  //       updateQuantity(productId, newQuantity);
+  //     });
+  //   });
+  // });
+  document.addEventListener('DOMContentLoaded', function () {
+     
+
+
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    const incrementButtons = document.querySelectorAll('.increment-btn');
+    const decrementButtons = document.querySelectorAll('.decrement-btn');
+    const cartTotalElement = document.querySelector('.cart-total');
+
+   
+                const cartItems = document.querySelector('.cart-items');
+                const cartTotal = document.querySelector('.cart-total');
+                const editButtons = document.querySelectorAll('.edit-btn');
+                const removeButtons = document.querySelectorAll('.remove-btn');
+
+    quantityInputs.forEach(function (input) {
+      input.addEventListener('input', function () {
+        const productId = this.getAttribute('data-product-id');
+        const newQuantity = this.value;
+        const stockCount = this.getAttribute('data-stock-count');
+
+        if (newQuantity > stockCount) {
+        // Prevent setting quantity beyond the available stock count
+        this.value = stockCount;
+      }
+
+        updateQuantity(productId, newQuantity);
+        updateTotal();
+      });
+    });
+
+    incrementButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const input = this.parentNode.querySelector('.quantity-input');
+        const currentQuantity = parseInt(input.value);
+        const stockCount = input.getAttribute('data-stock-count');
+        const newQuantity = Math.min(stockCount, currentQuantity + 1);
+
+        input.value = newQuantity;
+        const productId = input.getAttribute('data-product-id');
+        if (newQuantity === stockCount) {
+        showAlert('info', 'Maximum stock count reached.');
+      } else {
+        updateQuantity(productId, newQuantity);
+        updateTotal();
+      }
+      });
+    });
+
+    decrementButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const input = this.parentNode.querySelector('.quantity-input');
+        const currentQuantity = parseInt(input.value);
+        const newQuantity = Math.max(1, currentQuantity - 1);
+
+        input.value = newQuantity;
+        const productId = input.getAttribute('data-product-id');
+        updateQuantity(productId, newQuantity);
+        updateTotal();
+      });
+    });
+    removeButtons.forEach(function (button) {
+                //     button.addEventListener('click', function () {
+                //         this.closest('tr').remove();
+                //         updateTotal();
+                //     });
+                // });
+    
+                // Initially update total
+                updateTotal();
+            });
+    // function updateTotal() {
+    //   let total = 0;
+    //   document.querySelectorAll('.cart-items tr').forEach(function (row) {
+    //     const price = parseFloat(row.children[2].textContent.slice(1));
+    //     const quantity = parseInt(row.querySelector('.quantity-input').value);
+    //     total += price * quantity;
+    //   });
+    //   cartTotalElement.textContent = '$' + total.toFixed(2);
+    // }
+    function updateTotal() {
+                    let total = 0;
+                    document.querySelectorAll('.cart-items tr').forEach(function (row) {
+                        const price = row.children[2].querySelector('.product_price').textContent.trim().slice(1) // Getting the price without $ sign
+                        console.log("price : ", price);
+                        const quantity = parseInt(row.querySelector('.quantity-input').value); // Getting the quantity from input field
+                        console.log("Quantity  :",quantity);
+                        const offerDiscount = row.children[2].getAttribute('data-offer-discount'); // Getting offer discount percentage
+                        console.log("OfferDiscount : ",offerDiscount);
+                        const subtotal = calculateSubtotal(price, quantity, offerDiscount);
+                        console.log("Subtotal : ",subtotal);
+                        row.children[4].textContent = 'Rs' + subtotal.toFixed(2);
+                        total += subtotal;
+                    });
+                    const cartTotal = document.querySelector('.cart-total');
+                    cartTotal.textContent = total.toFixed(2);
+                }
+
+                function calculateSubtotal(price, quantity, offerDiscount) {
+                 if (offerDiscount && offerDiscount > 0) {
+                 const discountedPrice = price * (1 - offerDiscount / 100); // Calculate discounted price
+                 return discountedPrice * quantity; // Return subtotal with discount applied
+                 } else {
+                return price * quantity; // Return regular subtotal without discount
+                   }
+                }
+
+   function showAlert(icon, text) {
+    Swal.fire({
+      icon: icon,
+      text: text,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+    
+  });
+  
+  
+
+  function updateQuantity(productId, newQuantity) {
+    // Make an AJAX request to your backend API to update quantity
+    fetch(`/updateQuantity/${productId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ newQuantity }),
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Quantity update failed.');
+        }
+      })
+      .then(data => {
+        // Optionally handle success response from the server
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle error
+        console.error(error);
+      });
+  }
+</script>
+
+<script>
+  
+</script>
+    
+  </body>
+</html>

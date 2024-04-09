@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>single product</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/assets/user/singleproduct.css" />
+    <link rel="stylesheet" href="/stylesheet/user/trail.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/zoom.css/1.1.3/zoom.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zoom.js/1.7.2/zoom.min.js"></script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    
+    <style>
+    /* Add this CSS block to your existing styles or create a new stylesheet */
+
+.add-to-cart-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ff2929; /* Green background color */
+    color: white; /* White text color */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border: none; /* Remove border */
+    border-radius: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
+    margin-bottom: 20px;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #e40000; /* Darker green on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+}
+.zoom-box {
+  width: 100%;
+  height: 450px; /* Adjust height as needed */
+  overflow: hidden;
+  border: 1px solid #ccc; /* Add border for visual clarity */
+}
+
+.MsterImage {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease; /* Add transition for smooth zoom effect */
+}
+
+.MsterImage.zoom:hover {
+  transform: scale(1.5); /* Increase scale on hover for zoom effect */
+}
+.small {
+  display: flex;
+  justify-content: space-between; /* Adjust spacing between small images */
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.small-img-row {
+  display: flex;
+}
+
+.small-img-col {
+  width: 400px; /* Set width of small image column */
+  height: 70px; /* Set height of small image column */
+}
+
+.small-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio of small images */
+}
+.fa-star.checked {
+  color: #f8c45b; /* Change the color to your preferred color */
+}
+
+/* Half-checked star */
+.fa-star.half-checked {
+  color: #f8c45b; /* Change the color to your preferred color */
+}
+
+/* Unchecked star */
+.fa-star {
+  color: #ccc; /* Change the color to your preferred color */
+}
+
+/* Optionally, you can style the product-rating container */
+.product-rating {
+  margin-top: 5px; /* Adjust as needed */
+}
+
+.product-rating .fa {
+  font-size: 20px; /* Adjust the font size of stars */
+}
+.scrollable-reviews {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 150px; /* Set maximum height to enable scrolling */
+  padding: 10px; /* Add padding */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add border radius */
+  margin-top: 20px; /* Add margin from the top */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.3);
+  
+ 
+}
+.scrollable-reviews::-webkit-scrollbar {
+  display: none; /* WebKit (Chrome, Safari, etc.) */
+}
+
+.scrollable-reviews h3 {
+  margin-bottom: 10px; /* Add space below the header */
+}
+
+.review {
+  margin-bottom: 15px; /* Add space between reviews */
+  padding: 10px; /* Add padding */
+  background-color: white;/* Set background color */
+  border: 1px solid #ddd; /* Add border */
+  border-radius: 5px; /* Add border radius */
+  /* display: flex; */
+  justify-content: space-between; 
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+}
+
+.review p {
+  margin: 5px 0; /* Add margin to paragraphs */
+}
+
+.review p strong {
+  font-weight: bold; /* Make text bold */
+}
+/* CSS for edit and delete buttons */
+.review .actions {
+  display: inline-block; /* Display buttons in the same line */
+ 
+}
+
+.review .actions a {
+  color: #fff;
+  padding: 5px 10px;
+  margin-left: 10px; /* Adjust spacing between buttons */
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.review .actions a.edit {
+  background: linear-gradient(to right, #4e54c8, #8f94fb); /* Gradient color for edit button */
+}
+
+.review .actions a.delete {
+  background: linear-gradient(to right, #e52d27, #b31217); /* Gradient color for delete button */
+}
+
+.review .actions a:hover {
+  cursor: pointer;
+}
+
+.review .actions a:hover.edit {
+  background: linear-gradient(to right, #3c44b1, #6a76fb); /* Gradient color on hover for edit button */
+}
+
+.review .actions a:hover.delete {
+  background: linear-gradient(to right, #ca2924, #8e0e0a); /* Gradient color on hover for delete button */
+}
+
+
+
+
+    </style>
+    
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar">
+        <div class="left">
+          <img
+            src="/img/furniture-logo.jpg"
+            alt="Decore Company Logo"
+            class="company-logo"
+          />
+          <span class="company-name">DECORE COMPANY</span>
+        </div>
+        <div class="right">
+          <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+          
+          <div class="dropdown" >
+            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #cccccc0c;padding: 1px;">
+                Category
+            </a>
+        
+            <div class="dropdown-menu" >
+                <a class="dropdown-item" href="/homeproduct">Home</a>
+                <a class="dropdown-item" href="/office">Office</a>
+            </div>
+        
+        </div>
+        </div>
+      </nav>
+
+      <!-- single product details -->
+      <div class="small-container single-product">
+        <div class="row" >
+          <div class="col-2" >
+            <div class="zoom-box">
+              <div class="MsterImage zoom" id="container">
+                <img
+                  src="<%= products.productImage[0] %>"
+                  alt="<%= products.productName %>"
+                  width="100%"
+                  id="ProductImge"
+                />
+              </div>
+            </div>
+            <div class="small" style="display:flex ">
+              <% products.productImage.forEach((image,index)=>{ %>
+                <div class="small-img-row" style="width:150px">
+                  <div class="small-img-col">
+                    <img
+                      src='<%= image %>'
+                      alt="<%= products.productName %>"
+                      
+                      class="small-img"
+                    />
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          <div class="col-2">
+            
+            <h1><%= products.productName %></h1>
+            <h4>  <% if (products.offerDiscountPercentage > 0) { %>
+              <div class="product-price">
+                  <span style="text-decoration: line-through;">₹<%= products.price %></span> 
+                  <span style="color: red;">(Offer: <%= products.price - (products.price * products.offerDiscountPercentage / 100).toFixed(2) %> off)</span>
+              </div>
+          <% } else { %>
+              <div class="product-price">₹<%= products.price %></div>
+          <% } %></h4>
+            <div class="product-rating" style="padding-bottom: 10px;">
+              <% if (products.averageRating > 0) { %>
+                <% for(let i = 1; i <= 5; i++) { %>
+                  <% if (i <= products.averageRating) { %>
+                    <span class="fa fa-star checked"></span>
+                    <% } else if (i == Math.ceil(products.averageRating) && products.averageRating % 1 !== 0) { %>
+                    <span class="fa fa-star half-checked"></span>
+                  <% } else { %>
+                    <span class="fa fa-star"></span>
+                  <% } %>
+                <% } %>
+              <% } else { %>
+                <span></span>
+              <% } %>
+            </div>
+            
+            
+            <button class="add-to-cart-btn" data-product-id="<%= products.id %>" data-stock-count="<%= products.stockCount %>">Add To Cart</button>
+
+            <h3>Product Details: </h3>
+            
+            <p>
+              <%=products.description%>
+            </p>
+           <!-- Reviews Section -->
+<div class="scrollable-reviews">
+  <h3>Reviews</h3>
+  <% if (products.reviews.length > 0) { %>
+      <% products.reviews.reverse().forEach(review => { %>
+          <div class="review" style="display: flex;">
+            <div>
+              <p><strong>User: </strong><%= review.user.name %></p>
+              <p><strong>Review: </strong><%= review.reviewText %></p>
+            </div>
+              <div class="actions" style="margin-top: 20px;" >
+                <% if (userData && review.user.equals(userData)) { %>
+                    <!-- Edit and delete options -->
+                    <a href="#" class="edit" onclick="editReview('<%= review._id %>', '<%= review.reviewText %>')">Edit</a>
+<a href="#" class="delete" onclick="deleteReview( '<%= review._id %>')">Delete</a>                <% } %>
+            </div>
+          </div>
+      <% }); %>
+  <% } else { %>
+      <p>No reviews available</p>
+  <% } %>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- title -->
+      
+      
+      <!-- Footer -->
+      <footer class="footer" style="background-color: rgb(110, 8, 8); color:white">
+        <div class="footer-content">
+          <div class="footer-section about">
+            <h4>About Us</h4>
+            <p>
+              Decore Company is your one-stop destination for high-quality
+              furniture. Explore our exclusive collection to find the perfect
+              pieces for your home.
+            </p>
+          </div>
+          <div class="footer-section contact">
+            <h4>Contact Information</h4>
+            <p>Email: info@decorecompany.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+          </div>
+          <div class="footer-section social">
+            <h4>Follow Us</h4>
+            <a href="#" class="social-icon"
+              ><img src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png" alt="Facebook"
+            /></a>
+            <a href="#" class="social-icon"
+              ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+            /></a>
+            <a href="#" class="social-icon"
+              ><img src="/public/img/1658586823instagram-logo-transparent.webp" alt="Instagram"
+            /></a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+        </div>
+      </footer>
+  
+     
+
+      <!-- js for toggle menu -->
+      <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+          if (MenuItems.style.maxHeight == "0px") {
+            MenuItems.style.maxHeight = "200px";
+          } else {
+            MenuItems.style.maxHeight = "0px";
+          }
+        }
+      </script>
+
+      <!-- js for product gallery -->
+
+      <script>
+        var ProductImg = document.getElementById("ProductImg");
+        var SmallImg = document.getElementsByClassName("small-img");
+        SmallImg[0].onclick = function () {
+          ProductImg.src = SmallImg[0].src;
+        };
+        SmallImg[1].onclick = function () {
+          ProductImg.src = SmallImg[1].src;
+        };
+        SmallImg[2].onclick = function () {
+          ProductImg.src = SmallImg[2].src;
+        };
+        SmallImg[3].onclick = function () {
+          ProductImg.src = SmallImg[3].src;
+        };
+      </script>
+      <script>
+        const containers = document.querySelectorAll(".MsterImage");
+      
+        containers.forEach((container) => {
+          const img = container.querySelector("img");
+      
+          container.addEventListener("mousemove", (e) => {
+            const x = e.clientX - container.offsetLeft;
+            const y = e.clientY - container.offsetTop;
+      
+            const xOffset = (x / container.offsetWidth) * 100;
+            const yOffset = (y / container.offsetHeight) * 100;
+            const zOffset = 10;
+      
+            img.style.transformOrigin = `${xOffset}% ${yOffset}%`; // Corrected line
+      
+            img.style.transform = `scale(2) translateZ(${zOffset}px)`;
+          });
+      
+          container.addEventListener("mouseleave", () => {
+            img.style.transformOrigin = 'center center';
+            img.style.transform = 'scale(1)';
+          });
+        });
+      </script>
+      
+
+      <script>
+        var ProductImge = document.getElementById("ProductImge");
+        var SmallImg = document.getElementsByClassName("small-img");
+      
+        for (var i = 0; i < SmallImg.length; i++) {
+          SmallImg[i].onclick = function () {
+            ProductImge.src = this.src;
+          };
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+      
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const productId = button.getAttribute('data-product-id');
+                    const stockCount = button.getAttribute('data-stock-count');
+
+                    console.log('Product ID:', productId);
+                    console.log('Stock Count:', stockCount);
+      
+                    if (parseInt(stockCount) > 0) {
+                        addToCart(productId);
+                    } else {
+                        Swal.fire({
+                            title: 'Out of Stock!',
+                            text: 'This product is currently out of stock.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+      
+            function addToCart(productId) {
+                fetch(`/add-to-cart/${productId}`, {
+                    method: 'POST',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: data.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+              const searchInput = document.getElementById('searchInput');
+                  searchInput.value = '';
+        });
+      
+        function searchProducts() {
+            const searchQuery = document.getElementById('searchInput').value;
+      
+            if (searchQuery.trim() !== '') {
+                fetch(`/search?query=${searchQuery}`, {
+                    method: 'GET',
+                })
+                    .then(response => response.json())
+                    .then(products => {
+                        updateProductSection(products);
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+      
+        function updateProductSection(products) {
+            const productContainer = document.querySelector('.product');
+            productContainer.innerHTML = ''; // Clear existing products
+      
+            products.forEach(product => {
+                const productCard = `
+                    <div class="product-card">
+                        <a href="/display/${product.id}">
+                            <div class="product-tumb">
+                                <img src="${product.productImage[0]}" alt="${product.productName}">
+                            </div>
+                            <div class="product-details">
+                                <h4><a href="/display/${product.id}">${product.productName}</a></h4>
+                                <div class="product-bottom-details">
+                                    <div class="product-price">₹${product.price}</div>
+                                    <div class="product-links">
+                                        <a href="#" class="favorite-btn"><i class="fa fa-heart"></i></a>
+                                        <a href="#" class="add-to-cart-btn" data-product-id="${product.id}" data-stock-count="${product.stockCount}">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                productContainer.innerHTML += productCard;
+            });
+        }
+      </script>
+       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+           <script src="/js/bootstrap.js"></script>
+           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+           <script
+             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+             crossorigin="anonymous"
+           ></script>
+           <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function editReview(reviewId, previousReviewText) {
+        Swal.fire({
+            title: 'Edit Review',
+            input: 'text',
+            inputPlaceholder: 'Enter your review',
+            inputValue: previousReviewText, // Prepopulate the input field with previous review text
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            cancelButtonText: 'Cancel',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Handle saving the edited review
+                const newReviewText = result.value;
+                // Send request to server to edit the review
+                fetch(`/edit-review/${reviewId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ reviewId, newReviewText }) // Send reviewId and newReviewText
+                })
+                .then(response => {
+                    if (response.ok) {
+                      Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Review updated successfully',
+            timer: 7000, // Time in milliseconds (2 seconds in this example)
+            timerProgressBar: true,
+            showConfirmButton: false // Hide the "OK" button
+        });
+                        // Reload the page or update the UI as needed
+                        location.reload(); // Example: Reload the page after editing
+                    } else {
+                        throw new Error('Failed to edit review');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error editing review:', error);
+                    // Handle error (e.g., show error message to user)
+                });
+            }
+        });
+    }
+</script>
+<script>
+  function deleteReview(reviewId) {
+      // Show confirmation dialog before deleting the review
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'You won\'t be able to revert this!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Send request to server to delete the review
+              fetch(`/delete-review/${reviewId}`, {
+                  method: 'DELETE',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              })
+              .then(response => {
+                  if (response.ok) {
+                      // Handle success
+                      Swal.fire({
+                          icon: 'success',
+                          title: 'Success',
+                          text: 'Review deleted successfully',
+                          timer: 2000, // 2 seconds
+                          timerProgressBar: true,
+                          showConfirmButton: false
+                      });
+                      // Reload the page or update the UI as needed
+                      location.reload(); // Example: Reload the page after deleting
+                  } else {
+                      throw new Error('Failed to delete review');
+                  }
+              })
+              .catch(error => {
+                  console.error('Error deleting review:', error);
+                  // Handle error (e.g., show error message to user)
+              });
+          }
+      });
+  }
+</script>
+
+
+    </div>
+  </body>
+</html>

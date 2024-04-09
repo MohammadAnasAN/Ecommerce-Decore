@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>order page</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      .col-lg-8{
+        padding-top: 30px;
+      }
+      .order-section {
+  padding: 20px;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px; /* Set the max height for the scroll effect */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff30; 
+  color: #6b000b;
+}
+.order-list::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+.product-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  /* margin-right: 10px; */
+}
+
+.order-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+}
+.order-image img {
+  width: 80px; /* Set the fixed width */
+  height: 80px; /* Set the fixed height */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cancel-button {
+  text-align: right;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+.btn-cream {
+        background-color: rgb(251, 169, 169);
+        color: maroon;
+        
+    }
+    .btn-cream:hover{
+      background-color: #6b000b;
+      color: #ffc4ca;
+    }   
+
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="#">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-lg-4 pb-5" >
+              <!-- Account Sidebar-->
+              <div class="author-card pb-3">
+                  <div class="author-card-cover" style="background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                  <div class="author-card-profile" >
+                      <div class="author-card-avatar"><img src="/img/pro.jpg" alt="Daniel Adams">
+                      </div>
+                      <div class="author-card-details">
+                          <h3 class="author-card-name text-lg">Hey ,<%=userDetails.name%></h3>
+                          <span class="author-card-position"></span>
+                          <span class="author-card-position"><%=userDetails.email%></span>
+                          <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
+                          <label for="profileImageInput" class="btn btn-style-1 btn-peach btn-sm mt-2" style="padding: 0rem 0.1rem; background-color: rgba(128, 0, 0, 0.104); color: #ba3434;border-color: #ff838343;"></label>
+                      </div>
+                  </div>
+              </div>
+              
+              
+              <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item order-list  active" href="">
+                        Order List
+                    </a>
+                    <a class="list-group-item profile-settings" href="/newprofile">
+                        Profile Settings
+                    </a>
+                    <a class="list-group-item addresses" href="/Address">
+                        Addresses
+                    </a>
+                    <a class="list-group-item my-wishlist" href="">
+                        My Wishlist
+                    </a>
+                    <a class="list-group-item my-tickets" href="/cart">
+                        My Cart
+                    </a>
+                </nav>
+            </div>
+            
+          </div>
+          <!-- Profile Settings-->
+         
+          <!-- <div class="col-lg-8 pb-5"> -->
+
+            <div class="col-lg-8 pb-5">
+              <div class="order-section">
+                <h2>Order Details</h2>
+                <div class="order-list">
+                  <% orders.forEach(order => { %>
+                    <!-- Loop through each order item -->
+                    <% order.items.forEach(item => { %>
+                      <div class="order-item">
+                        <div class="order-image">
+                          <% if (item.product && item.product.productImage && item.product.productImage.length > 0) { %>
+                            <img src="<%= item.product.productImage[0] %>" alt="Product Image" />
+                          <% } else { %>
+                            <p>No Image Available</p>
+                          <% } %>
+                        </div>
+                        <div class="order-details">
+                          <% if (item.product) { %>
+                            <h5><%= item.product.productName %></h5>
+                            <p>Order ID: #<%= order._id %></p>
+                            <p>Total Price: $<%= item.product.price * item.quantity %></p>
+                            <p>Quantity: <%= item.quantity %></p>
+                          <% } else { %>
+                            <p>Product details not available</p>
+                          <% } %>
+                        </div>
+                        <div class="status-display">
+
+                          <p>Status: <%= item.status %></p>
+                        </div>
+                        <div class="cancel-button">
+                          <% if (item.status === 'delivered') { %>
+                              <!-- If the status is 'delivered', show 'return' button -->
+                              <button class="btn btn-cream return-order"
+                                  data-item-id="<%= item._id %>"
+                                  data-order-id="<%= order._id %>"
+                                  data-current-status="<%= item.status %>">Return Order</button>
+                          <% } else if (item.status !== 'cancelled') { %>
+                              <!-- If the status is not 'cancelled', show 'cancel' button -->
+                              <button class="btn btn-danger cancel-order"
+                                  data-item-id="<%= item._id %>"
+                                  data-order-id="<%= order._id %>"
+                                  data-current-status="<%= item.status %>">Cancel Order</button>
+                          <% } else { %>
+                              <!-- If the status is 'cancelled', show 'Order Cancelled' message -->
+                              <p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>
+                          <% } %>
+                      </div>
+                      </div>
+                    <% }); %>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+            
+              
+    
+        <!-- </div> -->
+              </div>
+          </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var listItems = document.querySelectorAll(".list-group-item");
+      
+          listItems.forEach(function (item) {
+              item.addEventListener("click", function () {
+                  listItems.forEach(function (innerItem) {
+                      innerItem.classList.remove("active");
+                  });
+                  item.classList.add("active");
+              });
+          });
+      });
+      </script>
+      <script>
+        function showSuccessMessage() {
+          alert('User details updated successfully.');
+        }
+      </script>
+
+      <!-- Include SweetAlert script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cancelButtons = document.querySelectorAll(".cancel-order");
+    const returnButtons = document.querySelectorAll(".return-order");
+
+    cancelButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const orderId = button.dataset.orderId;
+        const itemId = button.dataset.itemId;
+        const currentStatus = button.dataset.currentStatus;
+
+        if (currentStatus === 'delivered') {
+          // If the status is 'delivered', change the button to 'return'
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#dc3545",
+            cancelButtonColor: "#6c757d",
+            confirmButtonText: "Yes, return it!",
+            input: "text",
+            inputPlaceholder: "Reason for return",
+            inputValidator: (value) => {
+              return !value && "Please provide a reason for return!";
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              const reason = result.value;
+
+              // Send return request to the server
+              fetch(`/returnOrder/${orderId}/${itemId}`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ reason }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Order return successful:', data);
+
+                // Update the UI to show "Order Returned"
+                button.closest(".cancel-button").innerHTML = '<p class="order-returned" style="color: #c82333;font-weight: bold;">Order Returned</p>';
+              })
+              .catch(error => {
+                console.error('Error returning order:', error);
+                // Handle errors here
+              });
+            }
+          });
+        } else
+
+        {
+        
+
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#dc3545",
+          cancelButtonColor: "#6c757d",
+          confirmButtonText: "Yes, cancel it!",
+          input: "text",
+          inputPlaceholder: "Reason for cancellation",
+          inputValidator: (value) => {
+            return !value && "Please provide a reason for cancellation!";
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const reason = result.value;
+
+            // Send cancellation request to the server
+            fetch(`/cancelOrder/${orderId}/${itemId}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ reason }),
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Order cancellation successful:', data);
+
+                // Update the status display for each item
+        const statusDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .status-display`);
+        statusDisplays.forEach((statusDisplay) => {
+          statusDisplay.textContent = newStatus;
+        });
+
+                        
+
+              // Optionally, you can update the UI to show "Order Cancelled"
+              button.closest(".cancel-button").innerHTML = '<p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>';
+
+               // Show the "Order Cancelled" message
+               const orderCancelledDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .order-cancelled`);
+                        orderCancelledDisplays.forEach((orderCancelledDisplay) => {
+                            orderCancelledDisplay.style.display = 'block';
+                        });
+            })
+            .catch(error => {
+              console.error('Error cancelling order:', error);
+              // Handle errors here
+            });
+          }
+        });
+      }
+      });
+    });
+  });
+
+
+</script> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cancelButtons = document.querySelectorAll(".cancel-order");
+        const returnButtons = document.querySelectorAll(".return-order");
+
+        function handleOrderCancellation(button) {
+            const orderId = button.dataset.orderId;
+            const itemId = button.dataset.itemId;
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Yes, cancel it!",
+                input: "text",
+                inputPlaceholder: "Reason for cancellation",
+                inputValidator: (value) => {
+                    return !value && "Please provide a reason for cancellation!";
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reason = result.value;
+                    // Send cancellation request to the server
+                    fetch(`/cancelOrder/${orderId}/${itemId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ reason }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                        console.log('Order cancellation successful:', data);
+
+                // Update the status display for each item
+                         const statusDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .status-display`);
+                          statusDisplays.forEach((statusDisplay) => {
+                         statusDisplay.textContent = newStatus;
+                         });
+
+                        
+
+              // Optionally, you can update the UI to show "Order Cancelled"
+              button.closest(".cancel-button").innerHTML = '<p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>';
+
+               // Show the "Order Cancelled" message
+               const orderCancelledDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .order-cancelled`);
+                        orderCancelledDisplays.forEach((orderCancelledDisplay) => {
+                            orderCancelledDisplay.style.display = 'block';
+                        });
+            })
+                        .catch(error => {
+                            console.error('Error cancelling order:', error);
+                            // Handle errors here
+                        });
+                }
+            });
+        }
+
+        function handleOrderReturn(button) {
+            const orderId = button.dataset.orderId;
+            const itemId = button.dataset.itemId;
+            const currentStatus = button.dataset.currentStatus;
+
+            if (currentStatus === 'delivered') {
+                // If the status is 'delivered', change the button to 'return'
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#6c757d",
+                    confirmButtonText: "Yes, return it!",
+                    input: "text",
+                    inputPlaceholder: "Reason for return",
+                    inputValidator: (value) => {
+                        return !value && "Please provide a reason for return!";
+                    },
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const reason = result.value;
+                        // Send return request to the server
+                        fetch(`/returnOrder/${orderId}/${itemId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ reason }),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Order return successful:', data);
+                                // Update the UI to show "Order Returned"
+                                button.closest(".cancel-button").innerHTML = '<p class="order-returned" style="color: #c82333;font-weight: bold;">Order Returned</p>';
+                            })
+                            .catch(error => {
+                                console.error('Error returning order:', error);
+                                // Handle errors here
+                            });
+                    }
+                });
+            } else {
+                handleOrderCancellation(button);
+            }
+        }
+
+        // Attach click event listeners to cancel buttons
+        cancelButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                handleOrderCancellation(button);
+            });
+        });
+
+        // Attach click event listeners to return buttons
+        returnButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                handleOrderReturn(button);
+            });
+        });
+    });
+</script>
+
+  </body>
+</html>

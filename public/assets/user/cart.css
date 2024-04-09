@@ -1,0 +1,144 @@
+.cart {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #cccccc00;
+  background-color: #fff;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 10px;
+  border: 1px solid #cccccc0d;
+  text-align: left;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.total-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.checkout-btn {
+  padding: 10px 20px;
+  background-color: #ff4c57;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+.cart{
+  margin-top: 20px;;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0);
+  width:100% ;
+  overflow-y: auto; /* Add this line for vertical scrollbar */
+  max-height: 453px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.512); */
+}
+
+.cart-title {
+  margin-top: px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse:unset;
+  
+  
+  
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 15px;
+  border:none;
+  border-radius: 5px;
+  text-align:center;
+  box-shadow: 0 0 10px rgba(41, 40, 40, 0.186);
+  background-color: #fde5df42;
+  
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.total-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.checkout-btn {
+  padding: 10px 20px;
+  background-color: #ff4c57;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+.cart-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  border-radius: 8px; /* Add this line for border radius */
+}
+.remove-btn {
+  background-color: maroon;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Add this line for hover effect */
+}
+
+.remove-btn:hover {
+  background-color: #8b0000;
+  transform: scale(1.1); /* Change to a darker shade of maroon on hover */
+}
+.cart-table th {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  background-color: #ff4c57; /* Specify your desired color */
+  color: #fff; /* Text color for better contrast */
+}
+.checkout-btn {
+  padding: 10px 20px;
+  background-color: #ff4c57;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add this line for hover effect */
+}
+
+.checkout-btn:hover {
+  background-color: #e63c47; /* Change to a darker shade on hover */
+}

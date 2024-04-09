@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders</title>
+    <link rel="stylesheet" href="/public/assets/user/home.css" />
+    <link rel="stylesheet" href="/public/assets/user/newprofile.css" />
+    <link rel="stylesheet" href="/public/assets/user/order.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <style>
+      .container {
+        height: 550px;
+      }
+    </style>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="#">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-4 pb-5">
+          <!-- Account Sidebar-->
+          <div class="author-card pb-3">
+            <div
+              class="author-card-cover"
+              style="
+                background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);
+              "
+            >
+              <a
+                class="btn btn-style-1 btn-white btn-sm"
+                href="#"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="You currently have 290 Reward points to spend"
+                ><i class="fa fa-award text-md"></i>&nbsp;290 points</a
+              >
+            </div>
+            <div class="author-card-profile">
+              <div class="author-card-avatar">
+                <img src="/public/img/pro.jpg" alt="Daniel Adams" />
+              </div>
+              <div class="author-card-details">
+                <h5 class="author-card-name text-lg">Daniel Adams</h5>
+                <span class="author-card-position"
+                  >Newzland,house no456,near amars</span
+                >
+                <span class="author-card-position">ma4767785009@gmail.com</span>
+                <input
+                  type="file"
+                  id="profileImageInput"
+                  style="display: none"
+                  accept="image/*"
+                />
+                <label
+                  for="profileImageInput"
+                  class="btn btn-style-1 btn-peach btn-sm mt-2"
+                  style="
+                    padding: 0rem 0.1rem;
+                    background-color: rgba(128, 0, 0, 0.104);
+                    color: #ba3434;
+                    border-color: #ff838343;
+                  "
+                  >Update Profile Pic</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard">
+            <nav class="list-group list-group-flush">
+              <a
+                class="list-group-item order-list"
+                href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page"
+              >
+                Order List
+              </a>
+              <a
+                class="list-group-item profile-settings active"
+                href="/views/user/newprofile.html"
+              >
+                Profile Settings
+              </a>
+              <a
+                class="list-group-item addresses"
+                href="/views/user/address.html"
+              >
+                Addresses
+              </a>
+              <a class="list-group-item my-wishlist" href=""> My Wishlist </a>
+              <a
+                class="list-group-item my-tickets"
+                href=" https://www.bootdey.com/snippets/view/bs4-account-tickets"
+              >
+                My Tickets
+              </a>
+            </nav>
+          </div>
+        </div>
+        <!-- Profile Settings-->
+        <div class="col-lg-8 pb-5">
+          <div class="d-flex justify-content-end pb-3">
+            <div class="form-inline">
+              <label class="text-muted mr-3" for="order-sort"
+                >Sort Orders</label
+              >
+              <select class="form-control" id="order-sort">
+                <option>All</option>
+                <option>Delivered</option>
+                <option>In Progress</option>
+                <option>Delayed</option>
+                <option>Canceled</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Date Purchased</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a
+                      class="navi-link"
+                      href="#order-details"
+                      data-toggle="modal"
+                      >78A643CD409</a
+                    >
+                  </td>
+                  <td>August 08, 2017</td>
+                  <td><span class="badge badge-danger m-0">Canceled</span></td>
+                  <td><span>$760.50</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      class="navi-link"
+                      href="#order-details"
+                      data-toggle="modal"
+                      >34VB5540K83</a
+                    >
+                  </td>
+                  <td>July 21, 2017</td>
+                  <td><span class="badge badge-info m-0">In Progress</span></td>
+                  <td>$315.20</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      class="navi-link"
+                      href="#order-details"
+                      data-toggle="modal"
+                      >112P45A90V2</a
+                    >
+                  </td>
+                  <td>June 15, 2017</td>
+                  <td><span class="badge badge-warning m-0">Delayed</span></td>
+                  <td>$1,264.00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      class="navi-link"
+                      href="#order-details"
+                      data-toggle="modal"
+                      >28BA67U0981</a
+                    >
+                  </td>
+                  <td>May 19, 2017</td>
+                  <td>
+                    <span class="badge badge-success m-0">Delivered</span>
+                  </td>
+                  <td>$198.35</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      class="navi-link"
+                      href="#order-details"
+                      data-toggle="modal"
+                      >502TR872W2</a
+                    >
+                  </td>
+                  <td>April 04, 2017</td>
+                  <td>
+                    <span class="badge badge-success m-0">Delivered</span>
+                  </td>
+                  <td>$2,133.90</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      class="navi-link"
+                      href="#order-details"
+                      data-toggle="modal"
+                      >47H76G09F33</a
+                    >
+                  </td>
+                  <td>March 30, 2017</td>
+                  <td>
+                    <span class="badge badge-success m-0">Delivered</span>
+                  </td>
+                  <td>$86.40</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var listItems = document.querySelectorAll(".list-group-item");
+
+        listItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            listItems.forEach(function (innerItem) {
+              innerItem.classList.remove("active");
+            });
+            item.classList.add("active");
+          });
+        });
+      });
+    </script>
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartItems = document.querySelector(".cart-items");
+        const cartTotal = document.querySelector(".cart-total");
+        const quantityInputs = document.querySelectorAll(".quantity-input");
+        const editButtons = document.querySelectorAll(".edit-btn");
+        const removeButtons = document.querySelectorAll(".remove-btn");
+
+        // Function to update total price
+        function updateTotal() {
+          let total = 0;
+          document.querySelectorAll(".cart-items tr").forEach(function (row) {
+            const price = parseFloat(row.children[2].textContent.slice(1)); // Getting the price without $ sign
+            const quantity = parseInt(
+              row.querySelector(".quantity-input").value
+            ); // Getting the quantity from input field
+            const subtotal = price * quantity;
+            row.children[4].textContent = "$" + subtotal.toFixed(2);
+            total += subtotal;
+          });
+          cartTotal.textContent = total.toFixed(2);
+        }
+
+        // Quantity input change event
+        quantityInputs.forEach(function (input) {
+          input.addEventListener("change", function () {
+            updateTotal();
+          });
+        });
+
+        // Edit button click event
+        editButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            const row = this.closest("tr");
+            const productName = row.children[1].textContent;
+            const productPrice = parseFloat(
+              row.children[2].textContent.slice(1)
+            ); // Getting the price without $ sign
+            const productQuantity = parseInt(
+              row.querySelector(".quantity-input").value
+            ); // Getting the quantity from input field
+            const newProductName = prompt(
+              "Enter new product name:",
+              productName
+            );
+            const newProductPrice = parseFloat(
+              prompt("Enter new product price:", productPrice)
+            );
+            const newProductQuantity = parseInt(
+              prompt("Enter new product quantity:", productQuantity)
+            );
+            if (
+              newProductName &&
+              !isNaN(newProductPrice) &&
+              !isNaN(newProductQuantity)
+            ) {
+              row.children[1].textContent = newProductName;
+              row.children[2].textContent = "$" + newProductPrice.toFixed(2);
+              row.querySelector(".quantity-input").value = newProductQuantity;
+              row.children[4].textContent =
+                "$" + (newProductPrice * newProductQuantity).toFixed(2);
+              updateTotal();
+            }
+          });
+        });
+
+        // Remove button click event
+        removeButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            this.closest("tr").remove();
+            updateTotal();
+          });
+        });
+
+        // Initially update total
+        updateTotal();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const colLG8 = document.querySelector(".col-lg-8");
+
+        // Check if the content inside col-lg-8 exceeds a certain height
+        if (colLG8.scrollHeight > 500) {
+          colLG8.classList.add("show-scroll");
+        }
+      });
+    </script>
+    <script>
+      function showConfirmation() {
+        if (confirm("Are you sure you want to remove this item?")) {
+          // If the user clicks "OK", perform the removal logic here
+          // For now, let's just log a message to the console
+          console.log("Item removed!");
+        } else {
+          // If the user clicks "Cancel", do nothing or handle accordingly
+          console.log("Removal canceled!");
+        }
+      }
+    </script>
+  </body>
+</html>
+
+
+<div class="col-lg-8 pb-5">
+  <div class="order-section">
+    <h2>Order Details</h2>
+    <div class="order-list">
+      <% orders.reverse().forEach(order => { %>
+        <!-- Loop through each order item -->
+        <% order.items.forEach(item => { %>
+          <div class="order-item">
+            <div class="order-image">
+              <% if (item.product && item.product.productImage && item.product.productImage.length > 0) { %>
+                <img src="<%= item.product.productImage[0] %>" alt="Product Image" />
+              <% } else { %>
+                <p>No Image Available</p>
+              <% } %>
+            </div>
+            <div class="order-details">
+              <% if (item.product) { %>
+                <h5><%= item.product.productName %></h5>
+                <p>Order ID: #<%= order._id %></p>
+                <p>Total Price: $<%= order.totalPrice %></p>
+                <p>Quantity: <%= item.quantity %></p>
+              <% } else { %>
+                <p>Product details not available</p>
+              <% } %>
+            </div>
+            <div class="status-display">
+
+              <p>Status: <%= item.status %></p>
+              <p>Payment: <%= order.paymentMethod %></p>
+              <p>Payment: <%= order.paymentstatus %></p>
+
+            </div>
+            <div class="cancel-button" id="qwerty-<%= item._id %>">
+              <% if (order.paymentstatus === 'failed') { %>
+                <!-- Show the continuePayment button if paymentstatus is 'failed' -->
+                <button class="btn btn-primary continue-payment" id="place-order-button" onclick="initiateRazorpayPayment('<%= order.totalPrice %>','<%= order._id %>')" >Continue Payment</button>
+              <% } else { %>
+                <!-- Otherwise, continue rendering the existing buttons based on item status -->
+                <div class="cancel-button" id="qwerty-<%= item._id %>">
+                  <% if (item.status === 'delivered') { %>
+                    <!-- If the status is 'delivered', show 'return' button -->
+                    <button class="btn btn-cream return-order"
+                            data-item-id="<%= item._id %>"
+                            data-order-id="<%= order._id %>"
+                            data-current-status="<%= item.status %>">Return Order</button>
+                  <% } else if (item.status === 'return_requested') { %>
+                    <!-- If the status is 'return_requested', show 'Waiting for Response' -->
+                    <p class="return-requested" style="color: #ff9307; font-weight: bold;">Waiting for Response</p>
+                  <% } else if (item.status === 'returned') { %>
+                    <!-- If the status is 'returned', show 'Request Accepted' -->
+                    <p class="request-response" style="color: #28a745; font-weight: bold;">Request Accepted</p>
+                  <% } else if (item.status === 'return_rejected') { %>
+                    <!-- If the status is 'return_rejected', show 'Request Rejected' -->
+                    <p class="request-response" style="color: #dc3545; font-weight: bold;">Request Rejected</p>
+                  <% } else if (item.status !== 'cancelled') { %>
+                    <!-- If the status is not 'cancelled', show 'cancel' button -->
+                    <button class="btn btn-danger cancel-order"
+                            data-item-id="<%= item._id %>"
+                            data-order-id="<%= order._id %>"
+                            data-current-status="<%= item.status %>">Cancel Order</button>
+                  <% } else { %>
+                    <!-- If the status is 'cancelled', show 'Order Cancelled' message -->
+                    <p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>
+                  <% } %>
+                </div>
+              <% } %>
+          </div>
+          </div>
+        <% }); %>
+      <% }); %>
+    </div>
+  </div>
+</div>

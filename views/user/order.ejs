@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>order page</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      .col-lg-8{
+        padding-top: 30px;
+      }
+      .order-section {
+  padding: 20px;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px; /* Set the max height for the scroll effect */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff30; 
+  color: #6b000b;
+}
+.order-list::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+.product-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  /* margin-right: 10px; */
+}
+
+.order-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+}
+.order-image img {
+  width: 80px; /* Set the fixed width */
+  height: 80px; /* Set the fixed height */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cancel-button {
+  text-align: right;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+.btn-cream {
+        background-color: rgb(251, 169, 169);
+        color: maroon;
+        
+    }
+    .btn-cream:hover{
+      background-color: #6b000b;
+      color: #ffc4ca;
+    } 
+    
+    .btn-success {
+        background-color: rgba(128, 0, 0, 0.328);
+        color: white;
+        border: none;
+        padding:  10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+    .star.selected {
+  color: rgb(255, 0, 0); /* Change to your desired color */
+}
+.star {
+            cursor: pointer;
+        }
+        .active {
+            color: rgb(255, 0, 0);
+        }
+
+        .write-review-btn {
+          background-image: linear-gradient(to right, #f7cbcf94, #f7eced79);
+            color: #9e0404;
+            padding: 5px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .write-review-btn:hover {
+            background-color: #61010e;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        .star-rating .star {
+          
+    font-size: 24px; /* Adjust the font size as needed */
+}
+.swal2-select select,
+.swal2-select input {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.swal2-select input {
+    margin-top: 10px;
+}
+@media (max-width: 320px) {
+    .container {
+      /* Adjust padding for smaller screens */
+      width:420px;
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .password {
+     /* Adjust padding for smaller screens */
+      padding-bottom: 5rem;
+     margin-bottom: 50px;
+      
+      width: 150px;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+     font-size: 12px;
+     
+    }
+    .navbar{
+      width:425px
+    }
+    .footer{
+      width:425px
+    }
+   
+    
+  }
+
+
+  @media (max-width: 376px) {
+    .container {
+      /* Adjust padding for smaller screens */
+      width:425px;
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+  @media (max-width: 769px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+     
+      }
+       .body{
+        width:100%
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+  
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+  }
+  
+
+ 
+
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-lg-4 pb-5" >
+              <!-- Account Sidebar-->
+              <div class="author-card pb-3">
+                  <div class="author-card-cover" style="background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                  <div class="author-card-profile" >
+                      <div class="author-card-avatar"><img src="/img/pro.jpg" alt="Daniel Adams">
+                      </div>
+                      <div class="author-card-details">
+                          <h3 class="author-card-name text-lg">Hey ,<%=userDetails.name%></h3>
+                          <span class="author-card-position"></span>
+                          <span class="author-card-position"><%=userDetails.email%></span>
+                          <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
+                          <label for="profileImageInput" class="btn btn-style-1 btn-peach btn-sm mt-2" style="padding: 0rem 0.1rem; background-color: rgba(128, 0, 0, 0.104); color: #ba3434;border-color: #ff838343;"></label>
+                      </div>
+                  </div>
+              </div>
+              
+              
+              <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item order-list  active" href="">
+                        Order List
+                    </a>
+                    <a class="list-group-item profile-settings" href="/newprofile">
+                        Profile Settings
+                    </a>
+                    <a class="list-group-item addresses" href="/Address">
+                        Addresses
+                    </a>
+                    <a class="list-group-item my-wishlist" href="/whishlist">
+                        My Wishlist
+                    </a>
+                    <a class="list-group-item my-tickets" href="/cart">
+                        My Cart
+                    </a>
+                    <a class="list-group-item my-tickets" href="/wallet">
+                      My Wallet
+                  </a>
+                </nav>
+            </div>
+            
+          </div>
+          <!-- Profile Settings-->
+         
+          <!-- <div class="col-lg-8 pb-5"> -->
+
+            <div class="col-lg-8 pb-5">
+              <div class="order-section">
+                <h2>Order Details</h2>
+                <div class="order-list">
+                  <% orders.reverse().forEach(order => { %>
+                    <!-- Loop through each order item -->
+                    
+                    <% order.items.forEach(item => { %>
+      
+                      <div class="order-item">
+                        <div class="order-image">
+                          <% if (item.product && item.product.productImage && item.product.productImage.length > 0) { %>
+                            <img src="<%= item.product.productImage[0] %>" alt="Product Image" />
+                          <% } else { %>
+                            <p>No Image Available</p>
+                          <% } %>
+                        </div>
+                        <div class="order-details">
+                          <% if (item.product) { %>
+                            <h5><%= item.product.productName %></h5>
+                            <p>Order ID: #Decore<%= order._id.toString().slice(-12) %></p>
+                            <p>Total Price: Rs.<%= order.totalPrice %></p>
+                            <p>Quantity: <%= item.quantity %></p>
+                            <!-- <div class="star-rating" data-product-id="<%= item.product._id %>">
+                              <span class="star" data-rating="1">&#9733;</span>
+                              <span class="star" data-rating="2">&#9733;</span>
+                              <span class="star" data-rating="3">&#9733;</span>
+                              <span class="star" data-rating="4">&#9733;</span>
+                              <span class="star" data-rating="5">&#9733;</span>
+                              <input type="hidden" name="rating" class="rating-value" value="0">
+                            </div> -->
+                            <% if (order.paymentstatus === 'confirmed'&& item.status === 'delivered'|| item.status === 'return_expired'||item.status === 'return_rejected') { %>
+                              <p style="margin: 0;">Give Rating Here :</p>
+                            <div class="star-rating" style="color: #6b000b79;margin-top: 5px" data-product-id="<%= item.product._id %>" >
+                              <span class="star" data-value="1">★</span>
+                              <span class="star" data-value="2">★</span>
+                              <span class="star" data-value="3">★</span>
+                              <span class="star" data-value="4">★</span>
+                              <span class="star" data-value="5">★</span>
+                              <input type="hidden" name="rating" class="rating-value" value="0">
+                          </div>
+                          <% } %>
+                            
+                          <% } else { %>
+                            <p>Product details not available</p>
+                          <% } %>
+                        </div>
+                        <div class="status-display">
+
+                          <p>Status: <%= item.status %></p>
+                          <p>Payment: <%= order.paymentMethod %></p>
+                          <p>Payment: <%= order.paymentstatus %></p>
+                          <% if (order.paymentstatus === 'confirmed'&& item.status === 'delivered'|| item.status === 'return_expired'||item.status === 'return_rejected') { %>
+                          <button class="write-review-btn" data-product-id="<%= item.product._id %>">Write Review</button>
+                          <% } %>
+
+                        </div>
+                        <div class="cancel-button" id="qwerty-<%= item._id %>">
+                          <% if (order.paymentstatus === 'failed') { %>
+                            <!-- Show the continuePayment button if paymentstatus is 'failed' -->
+                            <button class="btn btn-primary continue-payment" id="place-order-button" onclick="initiateRazorpayPayment('<%= order.totalPrice %>','<%= order._id %>')" >Continue Payment</button>
+                          <% } else { %>
+                            <!-- Otherwise, continue rendering the existing buttons based on item status -->
+                            <div class="cancel-button" id="qwerty-<%= item._id %>">
+                              <% if (item.status === 'delivered') { %>
+                                <!-- If the status is 'delivered', show 'return' button -->
+                                <button class="btn btn-cream return-order"
+                                        data-item-id="<%= item._id %>"
+                                        data-order-id="<%= order._id %>"
+                                        data-current-status="<%= item.status %>">Return Order</button>
+                                        <% } else if (item.status === 'return_expired') { %>
+                                          <!-- If the status is 'return_expired', show 'Return Expired' message -->
+                                          <p class="return-expired" style="color: #c82333; font-weight: bold;text-align: center;">Give Rating For This Product</p>
+                              <% } else if (item.status === 'return_requested') { %>
+                                <!-- If the status is 'return_requested', show 'Waiting for Response' -->
+                                <p class="return-requested" style="color: #ff9307; font-weight: bold;">Waiting for Response</p>
+                              <% } else if (item.status === 'returned') { %>
+                                <!-- If the status is 'returned', show 'Request Accepted' -->
+                                <p class="request-response" style="color: #28a745; font-weight: bold;">Request Accepted</p>
+                              <% } else if (item.status === 'return_rejected') { %>
+                                <!-- If the status is 'return_rejected', show 'Request Rejected' -->
+                                <p class="request-response" style="color: #dc3545; font-weight: bold;">Request Rejected</p>
+                              <% } else if (item.status !== 'cancelled') { %>
+                                <!-- If the status is not 'cancelled', show 'cancel' button -->
+                                <button class="btn btn-danger cancel-order"
+                                        data-item-id="<%= item._id %>"
+                                        data-order-id="<%= order._id %>"
+                                        data-current-status="<%= item.status %>">Cancel Order</button>
+                              <% } else { %>
+                                <!-- If the status is 'cancelled', show 'Order Cancelled' message -->
+                                <p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>
+                              <% } %>
+                            </div>
+                          <% } %>
+                          
+                      </div>
+                      </div>
+                      <% if (order.paymentstatus === 'confirmed'&& item.status === 'delivered'|| item.status === 'return_expired'||item.status === 'return_rejected') { %>
+                        <a href="/generatePDFInvoice/<%= order._id %>" download class="btn btn-success">Download Invoice</a>
+                        
+                    <% } %>
+                    
+                    <% }); %>
+                    
+                    <h1 style="color: #6b000b86;">_________________________________________________</h1>
+                  
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+            
+              
+    
+        <!-- </div> -->
+              </div>
+          </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+   
+   <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+    // Function to fetch data from server
+    function fetchData() {
+        // Check if any element with class 'return-order' exists
+        const returnOrderButtons = document.querySelectorAll('.return-order');
+        if (returnOrderButtons.length > 0) {
+            fetch('/updateStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'return_expired' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Check if the status was successfully updated
+                if (data.success) {
+                    // Hide the return button and show 'return expired' message
+                    document.querySelectorAll('.return-order').forEach(function(button) {
+                        button.style.display = 'none';
+                    });
+                    document.querySelectorAll('.return-expired').forEach(function(message) {
+                        message.style.display = 'block';
+                    });
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+
+    // Wait for 5days minute (60000 milliseconds) before triggering the fetch request
+    ssetTimeout(fetchData, 5 * 24 * 60 * 60 * 1000);
+});
+
+
+
+   </script>
+   <script>
+    const writeReviewBtns = document.querySelectorAll('.write-review-btn');
+
+    writeReviewBtns.forEach(writeReviewBtn => {
+        writeReviewBtn.addEventListener('click', async () => {
+            const productId = writeReviewBtn.dataset.productId; // Retrieve product ID from data attribute
+
+            const { value: review } = await Swal.fire({
+                title: 'Write a Review',
+                input: 'textarea',
+                inputLabel: 'Your Review',
+                inputPlaceholder: 'Write your review here...',
+                showCancelButton: true,
+                confirmButtonText: 'Submit',
+                cancelButtonText: 'Cancel',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Please enter your review';
+                    }
+                }
+            });
+
+            if (review) {
+                try {
+                    const response = await fetch('/write-review', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productId, review })
+                    });
+                    const data = await response.json();
+
+                    // Show success message if review submission succeeds
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Review Submitted Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    // Show error message if review submission fails
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'An error occurred while submitting the review.',
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+   <script>
+    const starRatings = document.querySelectorAll('.star-rating');
+
+    starRatings.forEach(starRating => {
+        const productId = starRating.dataset.productId;
+        const stars = starRating.querySelectorAll('.star');
+        const ratingValue = starRating.querySelector('.rating-value');
+
+        stars.forEach(star => {
+            star.addEventListener('click', async () => {
+                const rating = parseInt(star.getAttribute('data-value'));
+
+                try {
+                    const response = await fetch('/rate-product', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productId, rating })
+                    });
+                    const data = await response.json();
+
+                    // Update UI to show active stars
+                    stars.forEach((star, index) => {
+                        if (index < rating) {
+                            star.classList.add('active');
+                        } else {
+                            star.classList.remove('active');
+                        }
+                    });
+
+                    ratingValue.value = rating; // Update the hidden input value
+                    Swal.fire({
+                            icon: 'success',
+                            title: `You gave ${rating} star(s), Thank you!`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                } catch (error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'An error occurred while rating the product.',
+                        });
+                }
+            });
+        });
+    });
+</script>
+      
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var listItems = document.querySelectorAll(".list-group-item");
+      
+          listItems.forEach(function (item) {
+              item.addEventListener("click", function () {
+                  listItems.forEach(function (innerItem) {
+                      innerItem.classList.remove("active");
+                  });
+                  item.classList.add("active");
+              });
+          });
+      });
+      </script>
+      <script>
+        function showSuccessMessage() {
+          alert('User details updated successfully.');
+        }
+      </script>
+
+      <!-- Include SweetAlert script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  
+</script>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cancelButtons = document.querySelectorAll(".cancel-order");
+        const returnButtons = document.querySelectorAll(".return-order");
+
+        function handleOrderCancellation(button) {
+            const orderId = button.dataset.orderId;
+            const itemId = button.dataset.itemId;
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Yes, cancel it!",
+                input: "text",
+                inputPlaceholder: "Reason for cancellation",
+                inputValidator: (value) => {
+                    return !value && "Please provide a reason for cancellation!";
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reason = result.value;
+                    // Send cancellation request to the server
+                    fetch(`/cancelOrder/${orderId}/${itemId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ reason }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                        console.log('Order cancellation successful:', data);
+
+                // Update the status display for each item
+                         const statusDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .status-display`);
+                          statusDisplays.forEach((statusDisplay) => {
+                         statusDisplay.textContent = newStatus;
+                         });
+
+                        
+
+              // Optionally, you can update the UI to show "Order Cancelled"
+              button.closest(".cancel-button").innerHTML = '<p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>';
+
+               // Show the "Order Cancelled" message
+               const orderCancelledDisplays = document.querySelectorAll(`[data-order-id="${orderId}"] .order-cancelled`);
+                        orderCancelledDisplays.forEach((orderCancelledDisplay) => {
+                            orderCancelledDisplay.style.display = 'block';
+                        });
+            })
+                        .catch(error => {
+                            console.error('Error cancelling order:', error);
+                            // Handle errors here
+                        });
+                }
+            });
+        }
+
+        function handleOrderReturn(button) {
+            const orderId = button.dataset.orderId;
+            const itemId = button.dataset.itemId;
+            const currentStatus = button.dataset.currentStatus;
+
+   
+
+            if (currentStatus === 'delivered') {
+                // If the status is 'delivered', change the button to 'return'
+                const returnReasons = [
+            "Product is damaged",
+            "Product was not ordered",
+            "I don't like the product",
+            "Arrived late or broken",
+            "Different Product shipped",
+            'This  item does not match my order.',
+            // Add more reasons if needed
+        ];
+
+        // Create dropdown options HTML
+        const dropdownOptions = returnReasons.map(reason => `<option value="${reason}">${reason}</option>`).join('');
+
+                Swal.fire({
+                    title: "Are you sure? You won't be able to revert this!",
+                    text: "You won't be able to revert this!",
+                    html:
+                   `<select id="returnReason" class="swal2-input">${dropdownOptions}</select>` ,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    cancelButtonColor: "#6c757d",
+                    confirmButtonText: "Yes, return it!",
+                    
+                    
+                    inputValidator: (value) => {
+                        return !value && "Please provide a reason for return!";
+                    },
+                    customClass: {
+                input: 'swal2-select',
+            }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                      const reason = document.getElementById('returnReason').value;
+                        // Send return request to the server
+                        fetch(`/returnOrder/${orderId}/${itemId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ reason }),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                              console.log('Order return requested:', data);
+
+                              const returnButton = document.querySelector(`#qwerty-${itemId} .return-order`);
+            if (returnButton) {
+                returnButton.disabled = true;
+                returnButton.style.display = 'none'; // Hide the button
+            }
+
+                              if (data.success) {
+            // Create a new paragraph element
+            const paragraph = document.createElement('p');
+            paragraph.className = 'return-requested';
+            paragraph.style.color = '#ff9307';
+            paragraph.style.fontWeight = 'bold';
+            paragraph.textContent = 'Waiting for Response';
+
+            // Append the paragraph to a container in your HTML (replace 'containerId' with the actual ID of your container)
+            document.getElementById(`qwerty-${itemId}`).appendChild(paragraph);
+        }
+
+
+  
+                            })
+                            .catch(error => {
+                                console.error('Error returning order:', error);
+                                // Handle errors here
+                            });
+                    }
+                });
+             
+               
+
+            } else {
+                handleOrderCancellation(button);
+            }
+        }
+
+        // Attach click event listeners to cancel buttons
+        cancelButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                handleOrderCancellation(button);
+            });
+        });
+
+        // Attach click event listeners to return buttons
+        returnButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                handleOrderReturn(button);
+
+              //   setTimeout(() => {
+              //   button.disabled = true;
+              //   button.style.display = 'none'; // Hide the button
+              //   const returnExpiredParagraph = document.createElement('p');
+              //   returnExpiredParagraph.className = 'return-expired';
+              //   returnExpiredParagraph.style.color = '#dc3545';
+              //   returnExpiredParagraph.style.fontWeight = 'bold';
+              //   returnExpiredParagraph.textContent = 'Return Expired';
+              //   button.closest(".cancel-button").appendChild(returnExpiredParagraph);
+              //  }, 60000);
+              //  7 * 24 * 60 * 60 * 1000); // 60000 milliseconds = 1 minute
+            });
+        });
+    });
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- Razor Pay -->
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+     function initiateRazorpayPayment(Price,Order_id) {
+        
+        $.ajax({
+          url: '/razorpayInstance/orderId',
+          method: 'POST',
+          timeout: 0,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          "data": JSON.stringify({
+            "amount": 2,
+          }),
+        })
+          .done(response => {
+            orderId = response.orderId;
+            orderprice = response.orderprice;
+            ordresignature = response.signature;
+  
+            var options = {
+              "key": 'rzp_test_W2ynZwkDBo9gCB',
+              'amount': orderprice,
+              'currency': 'INR',
+              'name': 'DeCore',
+              'description': 'Online Payment',
+              'image': '',
+              'order_id': orderId,
+              'handler': function (response) {
+                // var form = document.createElement('form');
+                // form.method = 'post';
+                // form.action = '/razorpay';
+
+                fetch('/payment-failure', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: Order_id,
+          }),
+        })
+          .then(response =>  {
+            return response.json();
+        })
+           .then(data => {
+            window.location.reload()
+        })
+        .catch(error => {
+            console.error('Error placing order:', error);
+            showAlert('An error occurred while retrying your order.', 'error');
+        });
+                
+              },
+            };
+
+  
+            var rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response) {
+                // rzp1.close();
+            });
+  
+            rzp1.open();
+          })
+          .fail(error => {
+            console.error('Error fetching Razorpay order ID:', error);
+          });
+      }
+
+</script>
+
+
+  </body>
+</html>

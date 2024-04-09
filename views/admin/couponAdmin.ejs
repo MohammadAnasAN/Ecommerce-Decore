@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupon</title>
+    <link rel="stylesheet" href="/assets/admin/dash.css">
+    <style>
+    
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 70%;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #b61e03;
+            color: white;
+        }
+
+        .deactivate-btn {
+            background-color: #FF6347;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .deactivate-btn:hover {
+            background-color: #D45040;
+        }
+        #couponTable_paginate {
+    margin-top: 10px;
+    text-align: center;
+    
+}
+
+#couponTable_paginate .paginate_button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #ff4c4c;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#couponTable_paginate .paginate_button:hover {
+    background-color: #720000;
+}
+
+#couponTable_paginate .paginate_button.current {
+    background-color: #31a935;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+#couponTable_paginate .paginate_button.previous,
+#couponTable_paginate .paginate_button.next {
+    font-weight: bold;
+}
+
+#couponTable_paginate .ellipsis {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #fff6f6;
+    background-color: #fff;
+}
+.add-coupon-btn-container {
+        text-align: right;
+        margin-bottom: 15px; /* Add margin for spacing */
+    }
+
+    .add-coupon-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50; /* Green color for the Add Coupon button */
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-coupon-btn:hover {
+        background-color: #45a049; /* Darker shade on hover */
+    }
+    .action-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 70px;
+  height: 40px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.edit-btn {
+  background-color: #4CAF50; /* Green color for Edit button */
+}
+
+.edit-btn:hover {
+  background-color: #45a049; /* Darker shade on hover */
+}
+
+.delete-btn {
+  background-color: #FF6347; /* Red color for Delete button */
+}
+
+.delete-btn:hover {
+  background-color: #D45040; /* Darker shade on hover */
+}
+
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+</head>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class='bx bxs-user-detail icons'></i>
+                
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/salesReport">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="/adminLogin">
+              <i class="bx bx-log-out icons"></i>
+              <span class="text nav-text">Log Out</span>
+            </a>
+          </li>
+          
+          </li>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      
+      <nav class="navbar" style="position: fixed;width:83.7%;z-index: 1;box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+
+
+     
+      <div class="content" style="width: 99%;margin-left: 5px;">
+        <!-- Add a table below the navbar -->
+
+        <div class="add-coupon-btn-container">
+            <a href="/couponAdd" class="add-coupon-btn">Add Coupon</a>
+        </div>
+        <div class="table-container">
+            <table id="couponTable">
+                <thead>
+                    <tr>
+                        <th>Coupon Code</th>
+                        <th>Discount Percentage</th>
+                        <th>Expiry Date</th>
+                        <th>Min Cart Value</th>
+                        <th>Usage Limit</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% coupons.forEach(coupon => { %>
+                    <tr class="coupon-row">
+                      <td><%= coupon.code %></td>
+                      <td><%= coupon.discountPercentage %></td>
+                      <td><%= coupon.expiryDate.toLocaleDateString("en-US") %></td>
+                      <td><%= coupon.minCartValue %></td>
+                      <td><%= coupon.usageLimit || 'Unlimited' %></td>
+                      <td>
+                        <% if (new Date(coupon.expiryDate) > new Date()) { %>
+                          Active
+                        <% } else { %>
+                          Inactive
+                        <% } %>
+                      </td>
+                      <td >
+                        <div style="display: flex;">
+                        <!-- Add SweetAlert2 confirmation for Delete button -->
+                        <form id="deleteForm<%= coupon.id %>" action="/deleteCoupon/<%= coupon.id %>" method="post">
+                          <button type="button" class="action-btn delete-btn" onclick="confirmDelete('<%= coupon.id %>')">Delete</button>
+                        </form>
+                        <a href="/editCouponPage/<%= coupon.id %>" class="action-btn edit-btn">Edit</a>
+
+                      </div>
+                      </td>
+                      
+                    </tr>
+                  <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+      <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+    </div>
+      
+    
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <script>
+      function confirmDelete(couponId) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You won\'t be able to revert this!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Submit the form with the corresponding ID
+            document.getElementById('deleteForm' + couponId).submit();
+          }
+        });
+      }
+    </script>
+
+   
+    
+    <script>
+      // Define the isCouponActive function to check if a coupon is active
+   
+  
+      // Call the document ready function and DataTable initialization
+      $(document).ready(function () {
+          $('#couponTable').DataTable();
+      });
+  
+      // Define the deactivateCoupon function
+     
+  </script>
+    
+</body>
+</html>

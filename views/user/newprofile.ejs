@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>user profile</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+      .col-lg-8{
+        padding-top: 80px;
+      }
+      #referralCodeContainer {
+    display: none;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: opacity 0.3s ease; /* Transition effect */
+}
+.custom-button {
+    background-color: #800000; /* Maroon */
+    background: linear-gradient(to right, #990202 0%, #f38d8d 100%); /* Specific gradient */
+    border: none;
+    color: white;
+    padding: 1px 5px; /* Reduced padding for smaller size */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px; /* Smaller font size */
+    align-items: center;
+    
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px; /* Slightly rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow effect */
+   
+}
+
+.custom-button:hover {
+    background: linear-gradient(to right, #8B0000 0%, #800000 100%); /* Darker gradient on hover */
+}
+/* Styling for the referral details section */
+#referralDetails {
+    padding: 20px;
+    /* background: linear-gradient(to right, #f9c2c2 0%, #fde5e5 30%, #ffffff 50%,#fde5e5 70%,#f9c2c289 100%); Gradient background    border-radius: 10px; Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-top: 20px; /* Add some space between elements */
+}
+
+#referralDetails h2 {
+    color: #333333; /* Dark text color */
+    font-size: 24px; /* Larger font size */
+}
+
+#referralDetails p {
+    color: #666666; /* Medium-dark text color */
+    font-size: 16px; /* Normal font size */
+}
+
+#referralDetails .btn-primary {
+    background-color: #007bff; /* Blue color for the button */
+    border-color: #007bff; /* Blue border color */
+    font-size: 14px; /* Smaller font size */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.29); /* Shadow effect */
+
+}
+
+#referralDetails .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+    border-color: #0056b3; /* Darker blue border color on hover */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.261); /* Shadow effect */
+
+}
+
+.text-center {
+    text-align: center; /* Center align text */
+}
+
+.text-right {
+    text-align: center; /* Right align text */
+}
+#referralDetails .btn-primary {
+    display: inline-block; /* Ensure button behaves as block element */
+    margin-top: 10px;
+}
+.copy-message {
+    position: fixed;
+    top: 75%;
+    left: 64.5%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+    display: none; /* Initially hidden */
+    animation: twist 0.5s ease-in-out; /* Animation */
+}
+
+@keyframes twist {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) rotate(360deg); }
+    100% { transform: translate(-50%, -50%) rotate(720deg); }
+}
+@media (max-width: 320px) {
+     .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    
+  }
+  
+
+ 
+  @media (max-width: 320px) {
+      
+    .navbar{
+      width:425px
+    }
+    .footer{
+      width:425px
+    }
+   
+    .container {
+      /* Adjust padding for smaller screens */
+      width:380px;
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .password {
+     /* Adjust padding for smaller screens */
+      padding-bottom: 5rem;
+     margin-bottom: 50px;
+      
+      width: 150px;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+    
+    
+  }
+
+
+  @media (max-width: 376px) {
+    .container {
+      /* Adjust padding for smaller screens */
+      width:425px;
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+  @media (max-width: 769px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+     
+      }
+       .body{
+        width:100%
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+  }
+  
+
+
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-lg-4 pb-5" >
+              <!-- Account Sidebar-->
+              <div class="author-card pb-3">
+                  <div class="author-card-cover" style="background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                  <div class="author-card-profile" >
+                      <div class="author-card-avatar"><img src="/img/pro.jpg" alt="Daniel Adams">
+                      </div>
+                      <div class="author-card-details">
+                          <h3 class="author-card-name text-lg">Hey ,<%=userDetails.name%></h3>
+                          <span class="author-card-position"></span>
+                          <span class="author-card-position"><%=userDetails.email%></span>
+                          <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
+                          <label for="profileImageInput" class="btn btn-style-1 btn-peach btn-sm mt-2" style="padding: 0rem 0.1rem; background-color: rgba(128, 0, 0, 0.104); color: #ba3434;border-color: #ff838343;"></label>
+                      </div>
+                  </div>
+              </div>
+              
+
+              <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item order-list" href="/orderPage">
+                        Order List
+                    </a>
+                    <a class="list-group-item profile-settings active" href="/newprofile">
+                        Profile Settings
+                    </a>
+                    <a class="list-group-item addresses" href="/Address">
+                        Addresses
+                    </a>
+                    <a class="list-group-item my-wishlist" href="/whishlist">
+                        My Wishlist
+                    </a>
+                    <a class="list-group-item my-tickets" href="/cart">
+                        My Cart
+                    </a>
+                    <a class="list-group-item my-tickets" href="/wallet">
+                        My Wallet
+                    </a>
+                </nav>
+            </div>
+            
+          </div>
+          <!-- Profile Settings-->
+          <div class="col-lg-8 pb-5">
+            
+            <form action="/updateprofile" method="post" class="row" id="updateProfileForm">
+
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="account-fn">User Name</label>
+                          <input class="form-control" type="text" id="account-fn" name="name" value="<%=userDetails.name%>" required="">
+                      </div>
+                  </div>
+                 
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="account-email">Email</label>
+                          <input class="form-control" type="email" id="account-email"  value="<%=userDetails.email%>" disabled="">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="account-phone">Phone Number</label>
+                          <input class="form-control" type="text" id="account-phone" name="phoneNumber" value="<%=userDetails.phoneNumber%>" required="">
+                      </div>
+                  </div>
+                  <div class="password row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                            <label for="account-pass">New Password</label>
+                            <input class="form-control" type="password" id="account-pass" name="newPassword">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="form-group">
+                            <label for="account-confirm-pass">Confirm Password</label>
+                            <input class="form-control" type="password" id="account-confirm-pass" name="confirmPassword">
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-12">
+                    <hr class="mt-2 mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                      <button class="btn btn-style-1 btn-primary mt-3 mt-sm-0" type="button" onclick="validateAndUpdateProfile()">
+                        Update Profile
+                      </button>
+                      
+                    </div>
+                  </div>
+              </form>
+             
+            <div class="shadow p-3 mb-5 bg-white rounded" id="referralDetails">
+              <h2 class="text-center" style="color: #90030380;">Invite Your Friends</h2>
+              <p class="text-center">Share the code with your friend and earn ₹100 for you and ₹50 for your friend.</p>
+              <div style="align-items: center;display: flex;justify-content: center;">
+              <a href="#" id="createReferralLink">
+                <button type="button" class="custom-button" data-user-id="<%=userDetails._id %>" onclick="createReferral(this)">Create Referral</button>
+            </a>
+            </div>
+              
+              <!-- Referral code display -->
+              <div class="text-center">
+                Referral code:<span id="referralCodeSpan"> <%=userDetails.referralCode %></span>
+                  <div id="referralCodeContainer" style="display: none;">
+                      <!-- The referral code will be displayed here -->
+                      <span>Referral code : <%= userDetails.referralCode %></span>
+                  </div>
+              </div>
+              <div id="copyMessage" class="copy-message">Copied!</div>
+
+              
+              <!-- Copy button -->
+              <div class="text-right">
+                  <button class="btn btn-primary" onclick="copyReferralCode()">Copy Code</button>
+              </div>
+          </div>
+          </div>
+      </div>
+      
+  </div>
+
+ 
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var listItems = document.querySelectorAll(".list-group-item");
+      
+          listItems.forEach(function (item) {
+              item.addEventListener("click", function () {
+                  listItems.forEach(function (innerItem) {
+                      innerItem.classList.remove("active");
+                  });
+                  item.classList.add("active");
+              });
+          });
+      });
+      </script>
+      <script>
+  function validateAndUpdateProfile() {
+    const userName = document.getElementById("account-fn").value.trim();
+    const phoneNumber = document.getElementById("account-phone").value.trim();
+    const newPassword = document.getElementById("account-pass").value.trim();
+    const confirmPassword = document.getElementById("account-confirm-pass").value.trim();
+
+    // Regular expressions for validation
+    const userNameRegex = /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/;
+    const phoneNumberRegex = /^\d{10}$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,20}$/;
+
+    // Validation
+    if (!userNameRegex.test(userName)) {
+      showErrorAlert("Username must not contain special characters or whitespace.");
+      return;
+    }
+
+    if (!phoneNumberRegex.test(phoneNumber)) {
+      showErrorAlert("Phone number must be 10 digits.");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      showErrorAlert("Passwords do not match.");
+      return;
+    }
+
+    if (!passwordRegex.test(newPassword)) {
+      showErrorAlert("Password must be 6-20 characters long and include at least one digit, one lowercase letter, one uppercase letter, and one special character.");
+      return;
+    }
+
+    // If all validations pass, show success message and submit the form
+    showSuccessMessage();
+    document.getElementById("updateProfileForm").submit();
+  }
+
+  function showErrorAlert(message) {
+    Swal.fire({
+      icon: "error",
+      title: "Validation Error",
+      text: message,
+    });
+  }
+
+  function showSuccessMessage() {
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: "User details updated successfully.",
+    });
+  }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+         var referralCode = '<%= userDetails.referralCode %>';
+         var createReferralButton = document.querySelector('#createReferralLink');
+         
+         if (referralCode) {
+             // If referral code is present, hide the button
+             createReferralButton.style.display = 'none';
+         }
+     });
+ 
+    //  function createReferral(button) {
+         
+    //      // Your createReferral function logic here
+    //      // This function will be called when the "Create Referral" button is clicked
+    //  }
+ 
+ 
+ 
+ 
+         function createReferral(button) {
+             const userId = button.getAttribute('data-user-id');
+     
+             fetch('/createReferral', {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json',
+                 },
+                 body: JSON.stringify({ userId }),
+             })
+             
+             
+             .then(response => response.json())
+             
+             .then(data => {
+                 const referralCodeContainer = document.getElementById('referralCodeContainer');
+     
+                 if (data.status === 'success') {
+                     
+                     if (data.referralCode) {
+                         // Display the existing referral code in the container
+                         referralCodeContainer.innerHTML = `<p>Your Referral Code: ${data.referralCode}</p>`;
+                         referralCodeContainer.style.display = 'block';
+                         button.style.display = 'none';
+                         
+                     } else {
+                         // Display the newly generated referral code
+                         referralCodeContainer.innerHTML =`<p>Your Referral Code: ${data.referralCode}</p>`;
+                         console.log(data.referralCode);
+                         referralCodeContainer.style.display = 'block';
+                         button.style.display = 'none';
+                     }
+                 } else {
+                     alert(data.message); // Display error message
+                 }
+                 
+             })
+             .catch(error => {
+                 console.error('Error:', error);
+             });
+             window.location.reload();
+         }
+     </script>
+     <script>
+      function copyReferralCode() {
+    var referralCodeElement = document.getElementById("referralCodeSpan");
+    var range = document.createRange();
+    range.selectNodeContents(referralCodeElement);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+
+    // Show the message
+    var copyMessage = document.getElementById("copyMessage");
+    copyMessage.style.display = "block";
+
+    // Hide the message after 1.5 seconds
+    setTimeout(function() {
+        copyMessage.style.display = "none";
+    }, 1500);
+}
+
+  </script>
+  
+  </body>
+</html>

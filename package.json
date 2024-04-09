@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.0.1",
+    "mongoose": "^8.1.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.9",
+    "otp-generator": "^4.0.1",
+    "pdfkit": "^0.14.0",
+    "puppeteer": "^22.6.1",
+    "razorpay": "^2.9.2",
+    "router": "^1.3.8",
+    "sweetalert2": "^11.10.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "name": "my-first-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "server": "nodemon index.js"
+  },
+  "author": "Mohammad Anas AN",
+  "license": "ISC",
+  "description": ""
+}

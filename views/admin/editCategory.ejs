@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/assets/admin/dash.css">
+</head>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class='bx bxs-user-detail icons'></i>
+                
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/salesReport">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="adminLogin">
+              <i class="bx bx-log-out icons"></i>
+              <span class="text nav-text">Log Out</span>
+            </a>
+          </li>
+          
+          </li>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      
+      <nav class="navbar">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+      
+       <!-- Inside main-content -->
+<div class="category-box">
+  <% if (typeof message !== 'undefined') { %>
+    <div class="Errormsg">
+      <h5><%= message %></h5>
+    </div>
+    <% } %>
+    <h3 class="category-header">Edit Category</h3>
+    
+    <form action="/editCategory/<%=id%>" method="POST" class="category-form" onsubmit="submitForm(event)">
+      <label for="categoryName">New Category Name:</label>
+      <input type="text" id="categoryName" name="categoryName" value="<%=name%>">
+
+      <label for="categoryOffer">New Category Offer (%):</label>
+      <input type="number" id="categoryOffer" name="categoryOffer" min="0" max="100" step="1" value="<%=offer%>">
+
+      <button type="submit" class="update-category-btn">Update Category</button>
+  </form>
+</div>
+
+
+      <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+    </div>
+      
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <script>
+    async function submitForm(event) {
+      event.preventDefault(); // Prevent the default form submission
+  
+      try {
+
+        const categoryName = document.getElementById('categoryName').value;
+      const categoryOffer = document.getElementById('categoryOffer').value;
+
+        const response = await fetch('/editCategory/<%= id %>', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+         body: JSON.stringify({ categoryName, categoryOffer }),
+        });
+  
+        const data = await response.json();
+  
+        if (data.success) {
+          Swal.fire({
+            title: 'Success',
+            text: data.success,
+            icon: 'success',
+          }).then(() => {
+            // Redirect to the category page upon success
+            window.location.href = '/category'; // Replace '/category' with the actual URL
+          });
+        } else if (data.error) {
+          // Display all error messages in a single alert
+          Swal.fire({
+            title: 'Error',
+            html: data.error,
+            icon: 'error',
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Internal Server Error',
+          icon: 'error',
+        });
+      }
+    }
+  </script>
+  
+  
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserManagement</title>
+    <link rel="stylesheet" href="/assets/admin/useradmin.css">
+</head>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class="bx bxs-user-detail icons"></i>
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/salesReport">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        
+      </div>
+    </nav>
+    <div class="main-content">
+      
+      <nav class="navbar" style="position: fixed;width:83.7%;z-index: 1;">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+    <form id="userManagementForm" action="/userAdmin" method="post"></form>
+      <section class="user-management">
+        <h2>User Management</h2>
+        <ul class="user-list" >
+            <!-- User 1 -->
+            <li class="user-item">
+                <span class="column">Name</span>
+                <span class="column">Email ID</span>
+                <span class="column">Block/Unblock</span>
+                <!-- <span class="column">Actions</span> -->
+            </li>
+            <% userFind.forEach((userFin) => { %>
+            <li class="user-item">
+                <span class="column"> <%= userFin.name %></span>
+                <span class="column"><%= userFin.email %></span>
+                <!-- <span class="column">
+                  <form action="/blockUser/<%= userFin._id %>" method="POST">
+                    <button type="submit" class="toggle-button visibility <%= userFin.isBlocked ? 'unblocked-user' : 'blocked-user' %>">
+                      <% if (userFin.isBlocked) { %>
+                        Unblock 
+                      <% } else { %>
+                        Block 
+                      <% } %>
+                    </button>
+                  </form>
+                </span> -->
+                <span class="column">
+                  <form action="/blockUser/<%= userFin._id %>" method="POST" id="blockUserForm<%= userFin._id %>">
+                    <button type="button" class="toggle-button visibility <%= userFin.isBlocked ? 'unblocked-user' : 'blocked-user' %>" onclick="confirmBlock('<%= userFin._id %>')">
+                      <% if (userFin.isBlocked) { %>
+                        Unblock 
+                      <% } else { %>
+                        Block 
+                      <% } %>
+                    </button>
+                  </form>
+                </span>
+                <!-- <span class="column">
+                    <button class="delete-button">Delete</button>
+                </span> -->
+            </li>
+          <% }); %>  
+            <!-- Add more users as needed -->
+        </ul>
+       </section>
+      </form>
+     <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+     </div>
+   
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    function confirmBlock(userId) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to block/unblock this user?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, block/unblock it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If the user clicks "Yes", submit the form
+          document.getElementById(`blockUserForm${userId}`).submit();
+          Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'User status updated successfully.',
+          timer: 800000000, // 3 seconds
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+        }
+      });
+    }
+  </script>
+  
+</body>
+</html>

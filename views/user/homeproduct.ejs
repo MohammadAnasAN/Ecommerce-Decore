@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home product</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+            </a>
+        
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/homeproduct">House</a>
+                <a class="dropdown-item" href="/office">Office</a>
+            </div>
+        </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header">
+        <h2>Choose wisely, and let your home tell your story.</h2>
+      </div>
+  
+      <!-- Products -->
+      <div class="product">
+        <% products.forEach(product => { %>
+          <div class="product-card">
+           
+              <a href="/display/<%= product.id%>">
+              <div class="product-tumb">
+                  <img src="<%= product.productImage[0] %>" alt="<%= product.productName %>">
+              </div>
+              <div class="product-details">
+                  <!-- <span class="product-catagory">Women,bag</span> -->
+                  <h4><a href="/display"><%= product.productName %></a></h4>
+                  
+                  <div class="product-bottom-details">
+                    <% if (product.offerDiscountPercentage > 0) { %>
+                      <div class="product-price">
+                          <span style="text-decoration: line-through;">₹<%= product.price %></span> 
+                          <span style="color: red;">(Offer: <%= product.price - (product.price * product.offerDiscountPercentage / 100).toFixed(2) %> off)</span>
+                      </div>
+                  <% } else { %>
+                      <div class="product-price">₹<%= product.price %></div>
+                  <% } %>
+                    <div class="product-links">
+                      <a href="#" class="favorite-btn"><i class="fa fa-heart"></i></a>
+                      <a href="#" class="add-to-cart-btn" data-product-id="<%= product.id %>" data-stock-count="<%= product.stockCount %>">
+                        <i class="fa fa-shopping-cart"></i>
+                      </a>
+                  </div>
+              </div>
+              </div>
+          </div>
+          <% }); %>
+      </div>
+                 
+  
+      
+  
+  
+      <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-section about">
+            <h4>About Us</h4>
+            <p>
+              Decore Company is your one-stop destination for high-quality
+              furniture. Explore our exclusive collection to find the perfect
+              pieces for your home.
+            </p>
+          </div>
+          <div class="footer-section contact">
+            <h4>Contact Information</h4>
+            <p>Email: info@decorecompany.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+          </div>
+          <div class="footer-section social">
+            <h4>Follow Us</h4>
+            <a href="#" class="social-icon"
+              ><img src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png" alt="Facebook"
+            /></a>
+            <a href="#" class="social-icon"
+              ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+            /></a>
+            <a href="#" class="social-icon"
+              ><img src="/public/img/1658586823instagram-logo-transparent.webp" alt="Instagram"
+            /></a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+        </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      <script>
+       
+  document.addEventListener('DOMContentLoaded', () => {
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+  
+      addToCartButtons.forEach(button => {
+          button.addEventListener('click', (event) => {
+              event.preventDefault();
+              const productId = button.getAttribute('data-product-id');
+              const stockCount = button.getAttribute('data-stock-count');
+  
+              if (parseInt(stockCount) > 0) {
+                  addToCart(productId);
+              } else {
+                  Swal.fire({
+                      title: 'Out of Stock!',
+                      text: 'This product is currently out of stock.',
+                      icon: 'error',
+                      confirmButtonText: 'OK'
+                  });
+              }
+          });
+      });
+  
+      function addToCart(productId) {
+          fetch(`/add-to-cart/${productId}`, {
+              method: 'POST', 
+          })
+          .then(response => response.json())
+          .then(data => {
+      
+      Swal.fire({
+          title: 'Success!',
+          text: data.message,
+          icon: 'success',
+          confirmButtonText: 'OK'
+      });
+  })
+  
+          .catch(error => console.error('Error:', error));
+      }
+        //pagination
+        const currentPage = parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+
+const updatePaginationLinks = (totalPages) => {
+  const paginationContainer = document.querySelector('.pagination');
+  paginationContainer.innerHTML = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageLink = document.createElement('a');
+    pageLink.href = `/homeproduct?page=${i}`;
+    pageLink.textContent = i;
+    pageLink.classList.add('page-link');
+    if (i === currentPage) {
+      pageLink.classList.add('active');
+    }
+    paginationContainer.appendChild(pageLink);
+  }
+};
+
+// Fetch the total number of pages from the server
+fetch('/total-pages')
+  .then(response => response.json())
+  .then(data => {
+    const totalPages = data.totalPages;
+    updatePaginationLinks(totalPages);
+  })
+  .catch(error => console.error('Error:', error));
+});
+ 
+  
+      </script>
+      <script></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="/js/bootstrap.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"
+      ></script>
+    </body>
+  </html>
+  
+  </body>
+</html>

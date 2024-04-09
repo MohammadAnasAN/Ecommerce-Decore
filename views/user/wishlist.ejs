@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+    <link rel="stylesheet" href="/assets/user/cart.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <style>
+        .cart-items{
+            background-color: #ff000007;
+        }
+        .container{
+            height:550px;
+
+            
+           
+        }
+        .cart::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  .add-to-cart-icon {
+    color: #fb4646; /* Change the color as needed */
+    font-size: 20px;
+    cursor: pointer;
+   
+  
+    transform: scale(1.05);
+}
+.add-to-cart-icon :hover {
+  background-color: #7e0000; /* Darker red on hover */
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transition effect */
+}
+.add-to-cart-btn {
+    display: inline-block; /* Make sure the link is displayed as a block */
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart-icon {
+    font-size: 24px; /* Adjust the font size as needed */
+    transition: transform 0.3s; /* Add transition effect for zoom */
+}
+
+.add-to-cart-btn:hover .add-to-cart-icon {
+    color: #ba0303;
+    transform: scale(1.2); /* Zoom effect on hover */
+}
+
+.remove-icon {
+    color: #ff3232; /* Change the color as needed */
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transition effect */
+}
+  .quantity-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the quantity input */
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  margin: 0 5px;
+  background: transparent;
+    border: none;
+    color: maroon;
+    font-weight: bold;
+    
+    text-align: center;
+}
+
+/* Style for the increment and decrement buttons */
+.increment-btn,
+.decrement-btn {
+  width: 25px;
+  height: 25px;
+  background-color: #6e07045e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.increment-btn:hover,
+.decrement-btn:hover {
+  background-color: #fa6e4f47;
+}
+@media (max-width: 320px) {
+     .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    
+  }
+  
+
+ 
+  @media (max-width: 320px) {
+      
+    .navbar{
+      width:425px
+    }
+    .footer{
+      width:425px
+    }
+   
+    .container {
+      /* Adjust padding for smaller screens */
+      width:380px;
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .password {
+     /* Adjust padding for smaller screens */
+      padding-bottom: 5rem;
+     margin-bottom: 50px;
+      
+      width: 150px;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+    
+    
+  }
+
+
+  @media (max-width: 376px) {
+    .container {
+      /* Adjust padding for smaller screens */
+      width:425px;
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+  @media (max-width: 769px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+     
+      }
+       .body{
+        width:100%
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+  }
+  
+
+        
+    </style>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="#">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-lg-4 pb-5">
+              <!-- Account Sidebar-->
+              <div class="author-card pb-3">
+                  <div class="author-card-cover" style="background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                  <div class="author-card-profile">
+                      <div class="author-card-avatar"><img src="/img/pro.jpg" alt="Daniel Adams">
+                      </div>
+                      <div class="author-card-details">
+                          <h3 class="author-card-name text-lg">Hey,<%=userDetails.name%></h3><span class="author-card-position"><%=userDetails.email%></span>
+                          <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
+                          <label for="profileImageInput" class="btn btn-style-1 btn-peach btn-sm mt-2" style="padding: 0rem 0.1rem; background-color: rgba(128, 0, 0, 0.104); color: #ba3434;border-color: #ff838343;"></label>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item order-list" href="/orderPage">
+                        Order List
+                    </a>
+                    <a class="list-group-item profile-settings" href="/newprofile">
+                        Profile Settings
+                    </a>
+                    <a class="list-group-item addresses" href="/Address">
+                        Addresses
+                    </a>
+                    <a class="list-group-item my-wishlist active" href="">
+                        My Wishlist
+                    </a>
+                    <a class="list-group-item my-tickets " href="/cart">
+                        My Cart
+                    </a>
+                    <a class="list-group-item my-tickets" href="/wallet">
+                      My Wallet
+                  </a>
+                </nav>
+            </div>
+            
+          </div>
+          <!-- Profile Settings-->
+          <div class="col-lg-8 pb-5">
+
+            <div class="cart">
+                <div class="cart-title" style="color: #7e0000;"><h5>Your Wishlist </h5></div>
+                <div class="cart-table-container">
+                <table class="cart-table">
+                    <thead >
+                        <tr style="text-align: center;">
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <!-- <th>Quantity</th>
+                            <th>Total</th> -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="cart-items">
+                      <% if (userWhishlist && userWhishlist.items.length > 0) { %>
+                        <% userWhishlist.items.forEach((item,index) => { %>
+                          <tr>
+                            <td><img src="<%= item.product.productImage[0] %>" alt="<%= item.product.productName %>" class="product-image"></td>
+                            <td><%= item.product.productName %></td>
+                            <td><%= item.product.description %></td>
+                            <td>$<%= item.product.price %></td>
+                            <!-- <td>
+                            <button class="decrement-btn" style="border-radius: 50px;" data-product-id="<%= item.product._id %>">-</button>
+                            <input type="number" min="1" max="<%= item.product.stockCount %>" value="<%= item.quantity %>" class="quantity-input" data-product-id="<%= item.product._id %>" data-stock-count="<%= item.product.stockCount %>">
+                            <button class="increment-btn" style="border-radius: 50px;" data-product-id="<%= item.product._id %>">+</button>
+                            </td> -->
+                            <!-- <td>$<%= (item.product.price * item.quantity).toFixed(2) %></td> -->
+                            <td  >
+                              <!-- <form action="/removeFromCart/<%= item.product._id %>" method="post">
+                                <button type="submit" class="remove-btn">Remove</button>
+                              </form> -->
+                              <div style="display: flex;padding-right: 0px;">
+                                <a href="#" class="add-to-cart-btn" styele="" data-product-id="<%= item.product.id %>" data-stock-count="<%= item.product.stockCount %>">
+                                  <i class="fa fa-shopping-cart add-to-cart-icon"></i>
+                              </a>
+                              <form id="removeForm<%= index+1 %>" action="#" method="post">
+                                <button type="button" class="remove-btn" style="background-color: #ba343400; margin-left: 20px;" onclick="confirmRemove('<%= index+1 %>', '<%= item.product.id %>')">
+                                  <i class="fa fa-trash remove-icon"></i>
+                              </button>
+                              
+                            </form>
+                            
+                              </div>
+                            </td>
+                          </tr>
+                        <% }); %>
+                      <% } else { %>
+                        <tr>
+                          <td colspan="6">Your wishlist is empty</td>
+                        </tr>
+                      <% } %>
+                    </tbody>
+                </table>
+                </div>
+                <!-- <div class="cart-footer">
+                    <div class="total-price">Total: Rs.<span class="cart-total"></span></div>
+                    <button class="checkout-btn" onclick="redirectToCheckout()">Checkout</button>
+                </div> -->
+            </div>
+            </div>
+              
+    
+</div>
+      </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script>
+function confirmRemove(formId, productId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'This will remove the item from your wishlist.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, remove it!'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`/removeFromWishlist/${productId}`, {
+                    method: 'POST',
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update the UI after successful removal
+                    const removeForm = document.getElementById(`removeForm${formId}`);
+                    if (removeForm) {
+                        removeForm.parentNode.removeChild(removeForm);
+                    }
+
+                    // You can also update other parts of the UI as needed
+
+                    Swal.fire('Removed!', 'The item has been removed from your wishlist.', 'success');
+                } else {
+                    console.error('Error removing item:', data.message);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
+    });
+}
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    
+          addToCartButtons.forEach(button => {
+              button.addEventListener('click', (event) => {
+                  event.preventDefault();
+                  const productId = button.getAttribute('data-product-id');
+                  const stockCount = button.getAttribute('data-stock-count');
+    
+                  if (parseInt(stockCount) > 0) {
+                      addToCart(productId);
+                  } else {
+                      Swal.fire({
+                          title: 'Out of Stock!',
+                          text: 'This product is currently out of stock.',
+                          icon: 'error',
+                          confirmButtonText: 'OK'
+                      });
+                  }
+              });
+          });
+    
+          function addToCart(productId) {
+              fetch(`/add-to-cart/${productId}`, {
+                  method: 'POST',
+              })
+                  .then(response => response.json())
+                  .then(data => {
+                      Swal.fire({
+                          title: 'Success!',
+                          text: data.message,
+                          icon: 'success',
+                          confirmButtonText: 'OK'
+                      });
+                  })
+                  .catch(error => console.error('Error:', error));
+          }
+            const searchInput = document.getElementById('searchInput');
+                searchInput.value = '';
+      });
+    
+      function searchProducts() {
+          const searchQuery = document.getElementById('searchInput').value;
+          
+          if (searchQuery.trim() !== '') {
+              fetch(`/search?query=${searchQuery}`, {
+                  method: 'GET',
+              })
+                  .then(response => response.json())
+                  .then(products => {
+                      updateProductSection(products);
+                  })
+                  .catch(error => console.error('Error:', error));
+          }
+      }
+    
+      function updateProductSection(products) {
+          const productContainer = document.querySelector('.product');
+          productContainer.innerHTML = ''; // Clear existing products
+    
+          products.forEach(product => {
+              const productCard = `
+                  <div class="product-card">
+                      <a href="/display/${product.id}">
+                          <div class="product-tumb">
+                              <img src="${product.productImage[0]}" alt="${product.productName}">
+                          </div>
+                          <div class="product-details">
+                              <h4><a href="/display/${product.id}">${product.productName}</a></h4>
+                              <div class="product-bottom-details">
+                                  <div class="product-price">₹${product.price}</div>
+                                  <div class="product-links">
+                                      <a href="#" class="favorite-btn"><i class="fa fa-heart"></i></a>
+                                      <a href="#" class="add-to-cart-btn" data-product-id="${product.id}" data-stock-count="${product.stockCount}">
+                                          <i class="fa fa-shopping-cart"></i>
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              `;
+              productContainer.innerHTML += productCard;
+          });
+    
+      }
+     
+    </script>
+</body>
+</html>

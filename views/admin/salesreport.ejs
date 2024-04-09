@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/assets/admin/dash.css">
+    <style>
+      
+
+       
+        /* Sidebar Navigation */
+       
+
+
+        /* Top Navigation */
+        .top-nav {
+            width: 100%;
+            height: 80px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: rgb(246, 246, 246);
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .btn-container {
+            text-align: right;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-pdf,
+        .btn-excel {
+            margin:40px;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-pdf:hover,
+        .btn-excel:hover {
+            background-color: #f2f2f2;
+        }
+
+        /* Table Styles */
+        table {
+            width: 110%; /* Adjusted width */
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgb(181, 7, 7);
+            color: white;
+            width: 230px;
+        }
+        .dataTables_wrapper {
+    padding-top: 20px;
+}
+#dateFilterForm{
+  padding: 10px;
+}
+.btn-filter {
+  background-color: rgb(248, 183, 172);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  margin-left:10px;
+}
+
+.btn-filter:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+#startDate:hover{
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+#endDate:hover{
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.form-control-sm{
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Styling for DataTable header */
+table.dataTable thead th {
+    background-color: rgb(177, 3, 3); /* Set the background color of header to maroon */
+    color: white; /* Set the text color to white */
+    text-align: center; /* Center align the text */
+}
+
+/* Styling for DataTable pagination */
+.dataTables_wrapper .dataTables_paginate {
+    text-align: center; /* Center align the pagination */
+}
+
+
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        @media screen and (max-width: 768px) {
+            .side-nav {
+                display: none; /* Hide sidebar on smaller screens */
+            }
+
+            .content {
+                padding-left: 20px; /* Add padding to content to compensate for hidden sidebar */
+            }
+        }
+        #example_wrapper {
+           /* Background color for the DataTable wrapper */
+            border-radius: 0px; /* Border radius for the DataTable wrapper */
+            padding: 0px; /* Padding for the DataTable wrapper */
+        }
+
+        #example th {
+            background-color: rgb(180, 8, 8); /* Header background color */
+            color: white; /* Header text color */
+             /* Border radius for top left corner of header */
+           
+        }
+
+        #example tbody tr {
+          
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.281); /* Box shadow effect */
+            border-radius: 10px; /* Border radius for each row */
+            margin-bottom: 10px; /* Margin bottom for each row */
+        }
+
+        #example tbody tr:hover {
+            background-color: #f2f2f2; /* Background color on hover */
+        }
+
+        #example tbody td {
+            padding: 10px; /* Padding for table cells */
+        }
+        .btn-pdf{
+          background-color: rgb(202, 0, 0);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+          color: #ddd;
+          width: 150px;
+         
+        }
+        .btn-pdf:hover{
+          background-color: rgb(255, 10, 10);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+          color: #ddd;
+        }
+        .btn-excel{
+          background-color: rgb(202, 0, 0);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+          color: #ddd;
+          width: 160px;
+        }
+        .btn-excel:hover{
+          background-color: rgb(255, 10, 10);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+          color: #ddd;
+        }
+        .btn-container {
+  
+    align-items: center;
+}
+
+.btn-container form {
+    margin-right: 0px; /* Adjust margin between form and buttons */
+}
+
+.download-buttons {
+   
+    align-items: center;
+}
+
+.btn-pdf,
+.btn-excel {
+    margin-right: 0px; /* Adjust margin between buttons */
+}
+
+.top-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.info-box {
+    background-color: #f5f5f5; /* Light gray background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    text-align: center;
+}
+
+.info-box h4 {
+    color: #b10707; /* Maroon color for heading */
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    color: #333; /* Dark text color */
+    font-weight: bold;
+    font-size: 18px;
+}
+.btn-container {
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.download-buttons {
+    display: flex;
+    align-items: center;
+    
+}
+
+
+
+.filter-dropdown {
+    margin-left: 20px; /* Adjust margin between download buttons and dropdown */
+}
+
+.filter-dropdown select {
+    padding: 8px 20px; /* Adjust padding for dropdown */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.filter-dropdown select:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Adjust shadow effect on hover */
+}
+
+#dateFilterForm {
+    display: flex;
+    align-items: center;
+}
+
+#dateFilterForm label {
+    margin-right: 10px; /* Adjust margin between labels and inputs */
+}
+
+#dateFilterForm input[type="date"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: box-shadow 0.3s ease;
+}
+
+#dateFilterForm input[type="date"]:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Adjust shadow effect on hover */
+}
+
+.btn-filter {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+    </style>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
+    <!-- DataTable HEADER-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+    <!-- Include pdfmake library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+</head>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class='bx bxs-user-detail icons'></i>
+                
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="/adminLogin">
+              <i class="bx bx-log-out icons"></i>
+              <span class="text nav-text">Log Out</span>
+            </a>
+          </li>
+          
+          </li>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      
+      <nav class="navbar" style="position: fixed;width:83.7%;z-index: 1;box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+     
+   <br>
+   <br>
+   
+    <!-- Top Navigation -->
+   
+
+    
+      
+
+        <!-- Main Content Area -->
+        <div class="content" style="padding: 10px;">
+          <div class="top-info">
+            <div class="info-box">
+                <h4>Overall Sales</h4>
+                <p><%= overallSales %></p>
+            </div>
+            <div class="info-box">
+                <h4>Total Orders</h4>
+                <p><%= totalOrders %></p>
+            </div>
+            <div class="info-box">
+                <h4>Total Users</h4>
+                <p><%= totalUsers %></p>
+            </div>
+            <div class="info-box">
+                <h4>Total Products</h4>
+                <p><%= totalProducts %></p>
+            </div>
+        </div>
+            <div class="btn-container" style="margin-right: 30px;padding: 1px; " >
+                <!-- <button class="btn-pdf" onclick=" downloadPDF()"><i class="fas fa-file-pdf"></i> Download PDF</button> -->
+                <a href="/pdf"><button class="btn-pdf"><i class="fas fa-file-pdf"></i> Download PDF</button></a>
+               <!-- <a href="/admin/excel"><button class="btn-excel" ><i class="fas fa-file-excel"></i> Download Excel</button></a>  -->
+               <button class="btn-excel" onclick="downloadExcel()">
+                <i class="fas fa-file-excel"></i> Download Excel
+            </button>
+               
+            <div class="filter-dropdown">
+              <form id="filterForm" action="/salesReport" method="GET" style="display: flex;">
+                  <select id="filterOption" name="filterOption" style="width: 100px;">
+                      <option style="font-size: 5px;">select</option>
+                      <option value="daily">Daily</option>
+                      <option value="weekly">Weekly</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="yearly">Yearly</option>
+                  </select>
+                  <button type="submit" class="btn-filter" style="width: 60px;font-size: 10px;"><i class="fas fa-filter"></i> Filter</button>
+              </form>
+          </div>
+                <form id="dateFilterForm" style="display:flex;">
+                    <label for="startDate" >Start Date:</label>
+                    <input type="date" id="startDate" name="startDate">
+                    <label for="endDate" style="padding: 10px;">End Date:</label>
+                    <input type="date" id="endDate" name="endDate">
+                    <button type="submit" class="btn-filter"  style="width: 60px;font-size: 10px;"><i class="fas fa-filter"></i> Filter</button>
+                </form>
+            </div>
+            <table id="example" class="table table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Date</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% salesReport.forEach(function(report) { %>
+                    <% report.items.forEach(function(item) { %>
+                        <tr>
+                            <td><%= item.product._id %></td>
+                            <td><%= item.product.productName %></td>
+                            <td><%= report.createdAt.toLocaleString() %></td>
+                            <td><%= item.quantity %></td> <!-- Display item quantity -->
+                            <td><%= report.disamnt %></td> <!-- Display item quantity -->
+                            <td><%= report.totalPrice %></td>
+                        </tr>
+                    <% }); %>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   
+    
+      <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+    </div>
+      
+    
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+<!-- DATATABLE  SCRIPT-->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>  
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "info": false // Disable info display
+        });
+    });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js" integrity="sha512-UnrKxsCMN9hFk7M56t4I4ckB4N/2HHi0w/7+B/1JsXIX3DmyBcsGpT3/BsuZMZf+6mAr0vP81syWtfynHJ69JA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    
+  </script>
+
+
+  <script>
+      async function downloadExcel() {
+          try {
+             
+  
+              const response = await fetch('/excel', {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+              });
+  
+              if (!response.ok) {
+                  throw new Error(HTTP  `error! Status: ${response.status}`);
+              }
+  
+              // Trigger download by parsing the response as blob
+              const blob = await response.blob();
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = 'sales_report.xlsx';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              window.URL.revokeObjectURL(url);
+          } catch (error) {
+              console.error('Error:', error);
+          }
+      }
+  </script>
+    
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductManagement</title>
+    <link rel="stylesheet" href="/assets/admin/orderman.css">
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<style>
+  body {
+      font-family: 'Arial', sans-serif;
+      margin: 0px;
+      padding: 0;
+      background-color: #f6f6f6;
+  }
+
+  .main-content {
+      margin-top: 0px;
+      padding: 0px;
+      position: absolute;
+      
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0px;
+      background-color: #fdb3b325;
+      position: relative;
+      border-spacing: 10px;
+     
+    
+       
+    
+  }
+  .btn-success.admin-approve-return {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Add a smooth transition effect */
+
+    /* Add 3D shadow effect */
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.btn-success.admin-approve-return:hover {
+    /* Adjust styles on hover for a 3D effect */
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+  th, td {
+      border: px solid #dddddd14;
+      padding: 12px;
+      text-align:center;
+      
+      
+      
+  }
+  td{
+    color:#7a0505;
+    font-weight:500;
+    padding: 12px;
+    box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.128);
+  }
+
+  th {
+      background-color: #910505;
+      color: #f7d0d0fe;
+      box-shadow: 0px 9px 11px rgba(0, 0, 0, 0.11);
+     
+  }
+
+  tbody tr:nth-child(even) {
+      background-color: #f3f0f0;
+  }
+
+  img {
+      max-width: 50px;
+      max-height: 50px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+  }
+
+  select {
+      padding: 8px;
+      background: transparent;
+      border: solid #dddddd02;
+      border-radius: 4px;
+      font-size: 14px;
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: #6f00009c;
+    color: #fbf7f7;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 4px 9px 11px rgba(0, 0, 0, 0.11);
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  [disabled] {
+      background-color: #e8e3e3;
+      cursor: not-allowed;
+  }
+  /* datatable */
+  #example_wrapper {
+    margin-top: 0px; /* Adjust as needed */
+    color: #9e0a0a;
+}
+
+#example_filter input,
+#example_length select {
+    margin-top: 10px; /* Adjust as needed */
+    margin-right: 20px;
+    border-radius: 20px;
+}
+
+#example_paginate {
+    margin-top: 10px; /* Adjust as needed */
+}
+
+#example_info {
+    margin-top: 0px; /* Adjust as needed */
+    color: #91050501;
+}
+
+.dataTables_processing {
+    z-index: 2;
+}
+#example_paginate {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#example_paginate .paginate_button {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #8e0000;
+    color: #fff;
+    border: 1px solid #92000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#example_paginate .paginate_button:hover {
+    background-color: #e10101;
+}
+
+#example_paginate .paginate_button.current {
+    background-color: #ff7a8a;
+}
+</style>
+<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />  
+    
+
+    
+   <nav class="sidebar" style=" box-shadow: 0px 9px 11px rgba(0, 0, 0, 0.261);z-index: 1;">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/img/admin.png" alt="logo" />
+          </span>
+          <div class="text header-text">
+            <span class="main">ADMIN</span>
+            <br>
+            <span class="sub">is now active</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="/dash">
+                <i class="bx bx-home-alt icons"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/userAdmin">
+                <i class='bx bxs-user-detail icons'></i>
+                
+                <span class="text nav-text">User Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/productManag">
+                <i class='bx bx-cart-add icons'></i>
+                <span class="text nav-text">Product Management</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/orderManage">
+                <i class='bx bx-money-withdraw icons'></i>
+                <span class="text nav-text">Order & Payments</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/salesReport">
+                <i class='bx bxs-report icons'></i>
+                <span class="text nav-text">Sales Report</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="/coupon">
+                <i class='bx bxs-coupon icons'></i>
+                <span class="text nav-text">coupon</span>
+              </a>
+            </li>
+            <!-- <li class="nav-link">
+              <a href="#">
+                <i class='bx bxs-sticker icons'></i>
+                <span class="text nav-text">Banner</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-log-out icons"></i>
+              <span class="text nav-text">Log Out</span>
+            </a>
+          </li>
+          
+          </li>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content" style="width: 83.7%;" >
+    <div class="sample" style="margin-top: 0px;">
+      <nav class="navbar" style="position:fixed;width:100%;z-index: 1;box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);margin-top: 0px;">
+
+          <div class="navbar-left">
+              <img src="/img/man-looking-at-computer.jpg" alt="Admin Image" class="admin-image">
+              <div class="admin-details">
+                  <p class="admin-name">Mohammad Anas AN</p>
+                  <p class="admin-role">Administrator</p>
+              </div>
+          </div>
+          <div class="navbar-right">
+           
+              
+              <img src="/img/th.jpeg" alt="Indian Flag" class="indian-flag">
+          </div>
+          <div class="navCenter">
+            <img src="/img/furniture-logo.jpg" alt="Admin Image" class="logo-img">
+            <h3>DECORE COMPANY</h3>
+          </div>
+      </nav>
+     
+
+     <!-- details of order management -->
+     <div class="tableorder" >
+      <form action="" method="">
+        <table  id="example" class="table dataTable">
+              
+             
+              <br>
+              <br>
+              <br>
+              <thead class="thead-dark">
+                  <tr>
+                      <th>Order ID</th>
+                      <th >User Name</th>
+                      <th>Shipping Address</th>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Total Price</th>
+                      <th>Payment</th>
+                      <th>Order Status</th>
+                     
+                      
+                      
+                      <th>Return</th>
+                      <th>Ordered At</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% orders.reverse().forEach(order => { %>
+                      <% order.items.forEach(item=> { %>
+                          <tr>
+                            <td>
+                              <div class="tooltip">
+                                  <div style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                      <%= order._id %>
+                                  </div>
+                                  <span class="tooltiptext">Decore<%= order._id.toString().slice(-12) %></span>
+                              </div>
+                          </td>
+                          
+                              <td ><%=order.user.name%></td>
+                              <td>
+                                  <%= order.shippingAddress.fullName %>,
+                                  <%= order.shippingAddress.houseName %>,
+                                  <%= order.shippingAddress.streetAddress %>,
+                                  <%= order.shippingAddress.city %>,
+                                  <%= order.shippingAddress.state %>,
+                                  <%= order.shippingAddress.pinCode %>
+                              </td>
+                              <td>
+                                <% if (item.product) { %>
+                                <div>
+                                    <img src="<%= item.product.productImage[0] %>" alt="<%= item.product. productName %> Image" style="width: 50px; height:50px; margin: 10px 0;">
+                                </div>
+                                <div class="tooltip">
+                                  <div style="width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                      <%= item.product.productName %>
+                                  </div>
+                                  <span class="tooltiptext"><%= item.product.productName %></span>
+                              </div>
+                               <% } else { %>
+                              Product details not available
+                            <% } %>
+                            </td>
+                              <td><%= item.quantity %></td>
+                              <td>₹<%= item.unitPrice * item.quantity %></td>
+                              <td><%= order.paymentMethod %></td>
+                              <td>
+                                  <select name="itemStatus" 
+                                          id="itemStatus"
+                                          data-item-id="<%= item._id %>"
+                                          data-order-id="<%= order._id %>"
+                                          <%= item.status === 'cancelled' ? 'disabled' : '' %>
+                                          style="<%= item.status === 'cancelled' ? 'font-weight: bold; color: red;' : '' %>"
+                                          <%= item.status === 'returned' ? 'disabled' : '' %>
+                                          style="<%= item.status === 'returned' ? 'font-weight: bold; color:blue;' : '' %>"
+                                          <%= item.status === 'return_rejected' ? 'disabled' : '' %>
+                                          style="<%= item.status === 'return_rejected' ? 'font-weight: bold; color:yellow;' : '' %>"
+                                          onchange="updateItemStatus(this)">
+                                      <option value="pending" <%= item.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                                      <option value="shipped" <%= item.status === 'shipped' ? 'selected' : '' %>>Shipped</option>
+                                      <option value="delivered" <%= item.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                                      <option value="cancelled" <%= item.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                      <option value="returned" <%= item.status === 'returned' ? 'selected' : '' %>>Returned</option>
+                                      <option value="return_rejected" <%= item.status === 'return_rejected' ? 'selected' : '' %>>Reject Return</option>
+                                      
+                                  <!-- </select> -->
+                              </td>
+                             
+                              <td>
+                                <% if (item.status === 'return_requested') { %>
+                                  
+                                  <div class="tooltip">
+                                    <div style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;color: #e10101;">
+                                        Return Reason
+                                    </div>
+                                    <span class="tooltiptext"><%= item.returnReason %></span>
+                                </div>
+                                <button class="btn btn-success admin-approve-return" data-item-id="<%= item._id %>" data-order-id="<%= order._id %>" data-accept="true"
+                                        data-item-id="<%= item._id %>"
+                                        data-order-id="<%= order._id %>"
+                                        data-accept="true">Approve Return</button>
+                                    <!-- <button class="btn btn-danger admin-approve-return"
+                                        data-item-id="<%= item._id %>"
+                                        data-order-id="<%= order._id %>"
+                                        data-accept="false">Reject Return</button>         -->
+                                 <% } %> 
+                                 <% if (item.status === 'returned') { %>
+                                  <p class="product-returned" style="color: #28a745;font-weight: bold;">Product Returned</p>
+                              <% } %>
+                              <%  if (item.status ==='return_rejected') { %>
+                                <p class="product-returned" style="color: #ff0303;font-weight: bold;">Return Rejected</p>
+                            <% } %>
+
+                            </td>
+
+                           
+                      
+                              <td><%= order.createdAt.toISOString().slice(0, 19).replace("T", " ") %></td>
+                          </tr>
+                      <% }); %>
+                  <% }); %>
+              </tbody>
+          </table>
+      </form>
+     </div>
+
+     </div>
+
+    
+
+
+
+  
+
+      <div class="bottom-content">
+        <li class="nav-link">
+            <a href="/adminLogin">
+                <i class="bx bx-log-out icons"></i>
+                <span class="text nav-text">Log Out</span>
+            </a>
+        </li>
+    </div>
+   
+     
+    
+  </div>
+  <!-- Bootstrap JS script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua/CXYLb/8/X+tnL3+aaCjVRD2rJL1dMwe5Lq6U/mkkibb5Q5S4hpkII" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    function updateItemStatus(selectElement) {
+    const itemId = selectElement.getAttribute('data-item-id');
+    const orderId = selectElement.getAttribute('data-order-id');
+    const newStatus = selectElement.value;
+    console.log(itemId);
+    console.log(orderId);
+    console.log(newStatus);
+
+    // Assuming you have an API endpoint for updating the item status
+    fetch(`/orderStatusUpdate/${orderId}/${itemId}`, {
+        method: 'POST',  // Change method to POST
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newStatus }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Item status updated successfully:', data);
+        // You can add additional logic here if needed
+    })
+    .catch(error => {
+        console.error('Error updating item status:', error);
+        // Handle errors here
+    });
+}
+</script>
+
+<!-- <script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+</script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      $('#example').DataTable({
+          "order": [[ 0, "desc" ]] // This will sort the table by the first column (Id) in descending order
+      });
+  });
+</script>
+    
+</body>
+</html>

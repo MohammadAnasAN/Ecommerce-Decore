@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>user profile</title>
+    <link rel="stylesheet" href="/assets/user/home.css" />
+    <link rel="stylesheet" href="/assets/user/newprofile.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      .col-lg-8{
+        padding-top: 30px;
+        
+      }
+      .container{
+        height:560px;
+      }
+ /* Add this to your existing style tag or stylesheet */
+
+/* Wallet Section Styles */
+.recent-transactions {
+    max-height: 100px;
+    overflow-y: auto;
+     /* Firefox */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.recent-transactions::-webkit-scrollbar {
+  width: 0;
+    background: transparent;
+}
+
+.recent-transactions::-webkit-scrollbar-thumb {
+    background-color: #888; /* Adjust color to match your background */
+}
+.wallet-section {
+  background-color: #f8f9fa85;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Balance Styles */
+.balance-section {
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #800000, #ff7b7b); /* Set your desired background color */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.358); /* Add box shadow for a subtle effect */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    padding: 20px; /
+    
+}
+
+.balance-heading {
+  font-size: 24px;
+  color: #f1f1f1;
+}
+
+.balance-amount {
+  font-size: 36px;
+  color: #4af271;
+}
+
+/* Recent Transactions Styles */
+.recent-transactions {
+  max-height: 290px;
+  overflow-y: auto;
+}
+
+.transaction-heading {
+  font-size: 20px;
+  color: #333;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  background: linear-gradient(to right, #8000000a, #ff7b7b41); /* Gradient from maroon to its matching color */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.131), 0 0 15px rgba(0, 0, 0, 0.2); /* Adding 3D effect with box shadows */
+    border-radius: 8px;
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+.transaction-date {
+  flex-basis: 20%;
+  font-size: 14px;
+  color: #555;
+}
+
+.transaction-details {
+  flex-basis: 50%;
+}
+
+.transaction-type {
+  font-size: 16px;
+  color: #333;
+}
+
+.transaction-description {
+  font-size: 14px;
+  color: #777;
+}
+
+.transaction-amount {
+  flex-basis: 20%;
+  font-size: 18px;
+  color: #dc3545;
+}
+
+/* Hover effect on transaction items */
+.transaction-item:hover {
+  background-color: #ffb0b043;
+  transition: background-color 0.3s ease;
+}
+/* Add these styles to your existing style tag or stylesheet */
+
+.green-amount {
+    color: #28a745; /* Green color for positive amounts */
+}
+
+.red-amount {
+    color: #dc3545; /* Red color for negative amounts */
+}
+.smaller-input {
+    width: 120px;
+    margin-left: 20px; /* Adjust as needed */
+    
+}
+
+.smaller-button {
+    padding: 3px 5px; /* Adjust as needed */
+    font-size: 14px; /* Adjust as needed */
+    background-image: linear-gradient(to right, #ff8a00, #da1b60); /* Gradient colors */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    margin-left: 35px;
+    margin-top: 10px;
+}
+
+.smaller-button:hover {
+    background-image: linear-gradient(to right, #da1b60, #ff8a00); /* Gradient colors on hover */
+    color: #ddd;
+}
+@media (max-width: 320px) {
+     .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    
+  }
+  
+
+ 
+  @media (max-width: 320px) {
+      
+    .navbar{
+      width:425px
+    }
+    .footer{
+      width:425px
+    }
+   
+    .container {
+      /* Adjust padding for smaller screens */
+      width:380px;
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .password {
+     /* Adjust padding for smaller screens */
+      padding-bottom: 5rem;
+     margin-bottom: 50px;
+      
+      width: 150px;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+    
+    
+  }
+
+
+  @media (max-width: 376px) {
+    .container {
+      /* Adjust padding for smaller screens */
+      width:425px;
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+  @media (max-width: 769px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+     
+      }
+       .body{
+        width:100%
+    }
+    .col-lg-8 {
+      /* Adjust padding for smaller screens */
+      
+     margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      /* Adjust padding for smaller screens */
+    
+      height: 1500px;
+      justify-content: center;
+    }
+  }
+  
+
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <img
+          src="/img/furniture-logo.jpg"
+          alt="Decore Company Logo"
+          class="company-logo"
+        />
+        <span class="company-name">DECORE COMPANY</span>
+      </div>
+      <div class="right">
+        <a href="/home">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/whishlist">Favorites</a>
+        <a href="/logout">Logout</a>
+        <a href="/newprofile">Profile</a>
+        <div class="dropdown">
+          <div class="dropdown">
+            <a
+              class="btn dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/homeproduct">House</a>
+              <a class="dropdown-item" href="/office">Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile -->
+    <div class="container mt-5">
+      <div class="row">
+          <div class="col-lg-4 pb-5" >
+              <!-- Account Sidebar-->
+              <div class="author-card pb-3">
+                  <div class="author-card-cover" style="background-image: url(https://cdn.wallpapersafari.com/84/49/4yxkEJ.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="/wallet" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;Your Wallet</a></div>
+                  <div class="author-card-profile" >
+                      <div class="author-card-avatar"><img src="/img/pro.jpg" alt="Daniel Adams">
+                      </div>
+                      <div class="author-card-details" >
+                          <h3 class="author-card-name text-lg">Hey ,<%=user.name%></h3>
+                          <span class="author-card-position"></span>
+                          <span class="author-card-position"><%=user.email%></span>
+                          <input type="file" id="profileImageInput" style="display: none;" accept="image/*">
+                          <label for="profileImageInput" class="btn btn-style-1 btn-peach btn-sm mt-2" style="padding: 0rem 0.1rem; background-color: rgba(128, 0, 0, 0.104); color: #ba3434;border-color: #ff838343;"></label>
+                      </div>
+                      <form id="addBalanceForm">
+                        <div class="form-group text-center">
+                          <label for="amount">Amount (₹)</label>
+                          <input type="number" class="form-control smaller-input" id="amount" name="amount" required>
+                       </div>
+                        </form>
+                        <button type="button" class="btn btn animated-button black-touch smaller-button" onclick="handlePayment()">Add Balance</button>
+                  </div>
+              </div>
+              
+
+              <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item order-list" href="/orderPage">
+                        Order List
+                    </a>
+                    <a class="list-group-item profile-settings " href="/newprofile">
+                        Profile Settings
+                    </a>
+                    <a class="list-group-item addresses" href="/Address">
+                        Addresses
+                    </a>
+                    <a class="list-group-item my-wishlist" href="/whishlist">
+                        My Wishlist
+                    </a>
+                    <a class="list-group-item my-tickets" href="/cart">
+                        My Cart
+                    </a>
+                    <a class="list-group-item my-tickets active" href="/wallet">
+                      My Wallet
+                  </a>
+                </nav>
+            </div>
+            
+          </div>
+          <!-- Profile Settings-->
+         <!-- Profile Settings-->
+<div class="col-lg-8 pb-5">
+    <!-- Wallet Section -->
+    <div class="wallet-section" >
+        <!-- Balance -->
+        <div class="balance-section" >
+            <h2 class="balance-heading">Wallet Balance</h2>
+            <div class="balance-amount">
+                <p class="amount"><%= user.wallet.balance.toFixed(2) %></p>
+            </div>
+           
+        </div>
+    
+        <!-- Recent Transactions -->
+        <div class="recent-transactions">
+            <h2 class="transaction-heading">Recent Transactions</h2>
+    
+            <% user.wallet.transactions.reverse().forEach(transaction => { %>
+                <div class="transaction-item">
+                    <div class="transaction-date" style="margin-left: 50px;"><%= transaction.date.toDateString() %></div>
+                    <div class="transaction-details" style="margin-left: 0px;text-align: center;">
+                        <p class="transaction-type"><%= transaction.description %></p>
+                        <p class="transaction-description"><%= transaction.amount > 0 ? 'Your Amount Added to wallet' : 'Deducted from wallet' %></p>
+                    </div>
+                    <div class="transaction-amount <%= transaction.amount > 0 ? 'green-amount' : 'red-amount' %>">
+                      <%= transaction.amount > 0 ? '+' : '' %><%= transaction.amount.toFixed(2) %>
+                  </div>
+                </div>
+            <% }); %>
+    
+            <!-- Add more transactions as needed -->
+        </div>
+    </div>
+  </div>
+  
+      </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h4>About Us</h4>
+          <p>
+            Decore Company is your one-stop destination for high-quality
+            furniture. Explore our exclusive collection to find the perfect
+            pieces for your home.
+          </p>
+        </div>
+        <div class="footer-section contact">
+          <h4>Contact Information</h4>
+          <p>Email: info@decorecompany.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div class="footer-section social">
+          <h4>Follow Us</h4>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/facebook-scalable-graphics-icon-facebook-logo-facebook-logo-png-clip-art.png"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img src="/public/img/Twitter_new_X_logo.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="/public/img/1658586823instagram-logo-transparent.webp"
+              alt="Instagram"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Decore Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var listItems = document.querySelectorAll(".list-group-item");
+      
+          listItems.forEach(function (item) {
+              item.addEventListener("click", function () {
+                  listItems.forEach(function (innerItem) {
+                      innerItem.classList.remove("active");
+                  });
+                  item.classList.add("active");
+              });
+          });
+      });
+      </script>
+      <script>
+        function showSuccessMessage() {
+          alert('User details updated successfully.');
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // Function to handle Razorpay payment
+  function handlePayment() {
+    var amount = document.getElementById('amount').value;
+
+    // Check if the amount is empty
+    if (!amount.trim()) {
+      // If amount is empty, show SweetAlert
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please enter the amount to add balance!',
+        confirmButtonColor: '#007bff' // Blue color for confirm button
+      });
+      return; // Exit the function if amount is empty
+    }
+
+    // Make an AJAX request to your server to generate a Razorpay order
+    fetch('/generate-razorpay-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ amount: amount })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Initialize Razorpay checkout
+      var options = {
+        'key': 'rzp_test_W2ynZwkDBo9gCB',
+        'amount': data.amount,
+        'currency': 'INR',
+        'name': 'DeCore',
+        'description': 'Add Balance',
+        'order_id': data.id,
+        'handler': function(response) {
+          // Send the Razorpay payment ID to your server for verification
+          fetch('/verify-razorpay-payment', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ paymentId: response.razorpay_payment_id, amount: amount })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              window.location.reload()
+              console.log("SUCCESS");
+              Swal.fire({
+                icon: 'success',
+                title: 'Balance Added Successfully!',
+                position: 'top-end',
+                toast: true,
+                showConfirmButton: false,
+                timer: 1500,  // Display the toast for 1.5 seconds
+                customClass: {
+                  popup: 'swal2-small-toast',  // Apply a custom class for smaller toast
+                },
+                
+              });
+
+              // Optionally, you can add a delay before submitting the form
+              setTimeout(() => {
+                document.getElementById('addBalanceForm').submit();
+              }, 1500);  // Adjust the delay as needed
+            } else {
+              // Handle payment failure
+              alert('Payment failed. Please try again.');
+            }
+          });
+        }
+      };
+
+      var rzp = new Razorpay(options);
+      rzp.open();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+</script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </body>
+</html>

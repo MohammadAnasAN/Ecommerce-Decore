@@ -336,7 +336,7 @@ exports.sortProducts = async (req, res) => {
             console.log('Wishlist not found for the user.');
         }
 
-        res.render('Home', { products ,productIds});
+        res.render('home', { products ,productIds});
     } catch (error) {
         console.error('Error fetching and sorting products:', error);
         res.status(500).send('Internal Server Error');

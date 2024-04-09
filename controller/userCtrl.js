@@ -1,7 +1,7 @@
 const express=require('express');
 const app=express();
 const userCollection = require('../model/userSchema');
-const bcryptjs = require('bcryptjs');
+// const bcryptjs = require('bcryptjs');
 const categoryCollection = require('../model/categoryMdl');
 const nodemailer = require('nodemailer')
 const otp = require('../model/otp')

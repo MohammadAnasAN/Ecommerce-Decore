@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express();
-const bcryptjs = require("bcryptjs");
+// const bcryptjs = require("bcryptjs");
 const mongoose = require("../config/dbConnect");
 const AddProduct = require("../model/addProductMdl");
 const multer = require("../middleware/multer");

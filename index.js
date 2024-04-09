@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const path = require('path');
-const bcryptjs = require('bcryptjs');
+// const bcryptjs = require('bcryptjs');
 const session = require('express-session'); // Import express-session
 
 const collection = require('./config/dbConnect.js');

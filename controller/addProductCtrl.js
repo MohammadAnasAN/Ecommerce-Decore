@@ -33,7 +33,7 @@ exports.addProducts = async (req, res) => {
       const categories = await categoryCollection.find({ isBlocked:false});
       console.log(categories);
       console.log(product);
-      res.render("addProduct", { categories, product });
+      res.render("addproduct", { categories, product });
     } catch (error) {
       console.error(error);
       res.status(500).send("Internal Server Error");

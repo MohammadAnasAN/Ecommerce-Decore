@@ -481,18 +481,19 @@ table.dataTable thead th {
                 </thead>
                 <tbody>
                   <% salesReport.forEach(function(report) { %>
-                    <% report.items.forEach(function(item) { %>
-                        <tr>
-                            <td><%= item.product._id %></td>
-                            <td><%= item.product.productName %></td>
-                            <td><%= report.createdAt.toLocaleString() %></td>
-                            <td><%= item.quantity %></td> <!-- Display item quantity -->
-                            <td><%= report.disamnt %></td> <!-- Display item quantity -->
-                            <td><%= report.totalPrice %></td>
-                        </tr>
-                    <% }); %>
-                <% }); %>
-                </tbody>
+                      <% report.items.forEach(function(item) { %>
+                          <tr>
+                            <td><%= item.product ? item.product._id || 'N/A' : 'N/A' %></td> <!-- Check if item.product is not null before accessing _id -->
+                            <td><%= item.product ? item.product.productName || 'N/A' : 'N/A' %></td> <!-- Check if item.product is not null before accessing productName -->
+                              <td><%= report.createdAt.toLocaleString() %></td>
+                              <td><%= item.quantity %></td> <!-- Display item quantity -->
+                              <td><%= report.disamnt %></td> <!-- Display discount amount -->
+                              <td><%= report.totalPrice %></td>
+                          </tr>
+                      <% }); %>
+                  <% }); %>
+              </tbody>
+              
             </table>
         </div>
     </div>

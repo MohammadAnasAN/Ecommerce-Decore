@@ -72,7 +72,6 @@ exports.sales=async(req,res)=>{
         // Calculate total products
         const totalProducts = await Product.countDocuments();
 
-
         // Render the sales report page and pass the data to the EJS template
         res.render('salesreport', { salesReport, overallSales, totalOrders, totalUsers, totalProducts }); // Assuming your EJS file is named salesReport.ejs
     } catch (error) {

@@ -74,7 +74,7 @@ exports.sales=async(req,res)=>{
 
 
         // Render the sales report page and pass the data to the EJS template
-        res.render('salesReport', { salesReport, overallSales, totalOrders, totalUsers, totalProducts }); // Assuming your EJS file is named salesReport.ejs
+        res.render('salesreport', { salesReport, overallSales, totalOrders, totalUsers, totalProducts }); // Assuming your EJS file is named salesReport.ejs
     } catch (error) {
         console.error('Error fetching sales report:', error);
         // Handle errors appropriately, e.g., render an error page

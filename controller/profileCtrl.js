@@ -271,7 +271,7 @@ exports.createReferral=async(req,res)=>{
           // Use the collectiontrylogs model to find a user based on the referral code
           const userDetails = await user.findOne({ referralCode: referralCode });
     console.log("user", userDetails);
-          if (user) {
+          if ( userDetails) {
               return res.json({ isValid: true, message: 'Referral code is valid.' });
           } else {
               return res.json({ isValid: false, message: 'Invalid referral code.' });

@@ -324,14 +324,18 @@
                               </div>
                           </td>
                           
-                              <td ><%=order.user.name%></td>
+                          <td><%= order.user ? order.user.name : 'User not available' %></td>
                               <td>
+                                <% if (order.shippingAddress) { %>
                                   <%= order.shippingAddress.fullName %>,
                                   <%= order.shippingAddress.houseName %>,
                                   <%= order.shippingAddress.streetAddress %>,
                                   <%= order.shippingAddress.city %>,
                                   <%= order.shippingAddress.state %>,
                                   <%= order.shippingAddress.pinCode %>
+                              <% } else { %>
+                                  Shipping address not available
+                              <% } %>
                               </td>
                               <td>
                                 <% if (item.product) { %>

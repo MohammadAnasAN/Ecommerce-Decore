@@ -14,6 +14,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css" />
     <style>
+      .product-card {
+    /* Add styles for product card */
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 10px #00000034);
+  }
+
+  /* Hover effect for product card */
+  .product-card:hover {
+    transform: scale(1.05);
+  }
       @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
 
 $anim: cubic-bezier(0.02, 0.63, 0.23, 0.99);
@@ -352,6 +362,19 @@ h1{
       .favorite-btn.active i {
     color: red; /* Change the color or add any other styles for the active state */
 }
+.price-animation {
+    animation: zoomInOut 1s infinite alternate;
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
 
     </style>
   </head>
@@ -611,7 +634,7 @@ h1{
             <% if (product.offerDiscountPercentage > 0) { %>
               <div class="product-price">
                   <span style="text-decoration: line-through;">₹<%= product.price %></span> 
-                  <span style="color: red;">(Offer: <%= product.price - (product.price * product.offerDiscountPercentage / 100).toFixed(2) %> off)</span>
+                  <span class="price-animation" style="color: red;"><%= product.price - (product.price * product.offerDiscountPercentage / 100).toFixed(2) %></span>
               </div>
           <% } else { %>
               <div class="product-price">₹<%= product.price %></div>

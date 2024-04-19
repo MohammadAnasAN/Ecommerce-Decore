@@ -239,11 +239,76 @@
       justify-content: center;
     }
   }
-  
+  .custom-font-bold {
+    font-family: 'Your Custom Font', sans-serif; /* Replace 'Your Custom Font' with the desired font name */
+    font-weight: bold;
+    font-style: italic;
+}
+/* Button Styles */
+.cancel-order {
+    /* Gradient Background */
+    background: linear-gradient(to right, #ff0224, #771301c3);
+    /* Box Shadow */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Transition Effect */
+    transition: all 0.3s ease;
+    color: #ececec;
+}
+
+/* Hover Styles */
+.cancel-order:hover {
+    /* Adjust Box Shadow */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    /* Scale Up Effect */
+    transform: scale(1.05);
+}
+/* Button Styles */
+.return-order {
+    /* Cream Background Color */
+    background-color: #F5F5DC;
+    /* Box Shadow */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Gradient Background */
+    background: linear-gradient(to right, #fbcac9, #fca1a1);
+    /* Transition Effect */
+    transition: all 0.3s ease;
+}
+
+/* Hover Styles */
+.return-order:hover {
+    /* Adjust Box Shadow */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    /* Scale Up Effect */
+    transform: scale(1.05);
+    color: #ff0019;
+}
+/* Button Styles */
+.continue-payment {
+    /* Primary Background Color */
+    /* background-color: #007bff; */
+    /* Box Shadow */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Gradient Background */
+    background: linear-gradient(to right, #007bff, #6c90ff);
+    /* Transition Effect */
+    transition: all 0.3s ease;
+}
+
+/* Hover Styles */
+.continue-payment:hover {
+    /* Adjust Box Shadow */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    /* Scale Up Effect */
+    transform: scale(1.05);
+}
+
+
+
 
  
 
     </style>
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- Navbar -->
@@ -406,16 +471,16 @@
                                         data-current-status="<%= item.status %>">Return Order</button>
                                         <% } else if (item.status === 'return_expired') { %>
                                           <!-- If the status is 'return_expired', show 'Return Expired' message -->
-                                          <p class="return-expired" style="color: #c82333; font-weight: bold;text-align: center;">Give Rating For This Product</p>
+                                          <p class="return-expired custom-font-bold" style="color: #c82333; font-weight: bold;text-align: center;">Give Rating For This Product</p>
                               <% } else if (item.status === 'return_requested') { %>
                                 <!-- If the status is 'return_requested', show 'Waiting for Response' -->
-                                <p class="return-requested" style="color: #ff9307; font-weight: bold;">Waiting for Response</p>
+                                <p class="return-requested custom-font-bold" style="color: #ff9307; font-weight: bold;">Waiting for Response</p>
                               <% } else if (item.status === 'returned') { %>
                                 <!-- If the status is 'returned', show 'Request Accepted' -->
-                                <p class="request-response" style="color: #28a745; font-weight: bold;">Request Accepted</p>
+                                <p class="request-response custom-font-bold" style="color: #28a745; font-weight: bold;">Request Accepted</p>
                               <% } else if (item.status === 'return_rejected') { %>
                                 <!-- If the status is 'return_rejected', show 'Request Rejected' -->
-                                <p class="request-response" style="color: #dc3545; font-weight: bold;">Request Rejected</p>
+                                <p class="request-response custom-font-bold" style="color: #dc3545; font-weight: bold;">Request Rejected</p>
                               <% } else if (item.status !== 'cancelled') { %>
                                 <!-- If the status is not 'cancelled', show 'cancel' button -->
                                 <button class="btn btn-danger cancel-order"
@@ -424,7 +489,7 @@
                                         data-current-status="<%= item.status %>">Cancel Order</button>
                               <% } else { %>
                                 <!-- If the status is 'cancelled', show 'Order Cancelled' message -->
-                                <p class="order-cancelled" style="color: #c82333;font-weight: bold;">Order Cancelled</p>
+                                <p class="order-cancelled custom-font-bold" style="color: #c82333;font-weight: bold;">Order Cancelled</p>
                               <% } %>
                             </div>
                           <% } %>

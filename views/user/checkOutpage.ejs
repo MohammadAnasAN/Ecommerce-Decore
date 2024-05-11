@@ -343,7 +343,7 @@ button {
         </div>
 
 
-             <span id="price" data-totalprice="<%=subtotal%>" ></span>
+             <span id="price" data-totalprice="<%=subtotal+50%>" ></span>
 
 
         <div class="payment-options-section" style="color: #560000c8;">
@@ -682,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Content-Type': 'application/json',
           },
           "data": JSON.stringify({
-            "amount": 1,
+            "amount":orderprice ,
           }),
         })
           .done(response => {
